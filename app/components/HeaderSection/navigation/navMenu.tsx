@@ -1,33 +1,27 @@
-"use client"
-import React, { useState, useEffect } from "react"
-import NavLink from "./navLink"
+"use client";
+import React, { useState, useEffect } from "react";
+import NavLink from "./navLink";
 
-type Language = "fr" | "ar"
+type Language = "fr" | "ar";
 
 const navItems: Record<Language, string[]> = {
   fr: ["Accueil", "Contact", "À propos"],
   ar: ["الرئيسية", "اتصل", "معلومات عنا"],
-}
+};
 
 const NavMenu: React.FC<{ language: Language }> = ({ language }) => {
-  const [activeLink, setActiveLink] = useState(() => {
-    const storedActiveLink = localStorage.getItem("activeLink")
-    return storedActiveLink && navItems[language].includes(storedActiveLink)
-      ? storedActiveLink
-      : navItems[language][0]
-  })
+  const [activeLink, setActiveLink] = useState(navItems[language][0]);
 
   useEffect(() => {
-    setActiveLink((prevActiveLink) =>
-      navItems[language].includes(prevActiveLink)
-        ? prevActiveLink
-        : navItems[language][0]
-    )
-  }, [language])
+    const storedActiveLink = localStorage.getItem("activeLink");
+    if (storedActiveLink && navItems[language].includes(storedActiveLink)) {
+      setActiveLink(storedActiveLink);
+    }
+  }, [language]);
 
   useEffect(() => {
-    localStorage.setItem("activeLink", activeLink)
-  }, [activeLink])
+    localStorage.setItem("activeLink", activeLink);
+  }, [activeLink]);
 
   return (
     <div className="flex-1 hidden md:flex justify-center items-center gap-3">
@@ -40,7 +34,7 @@ const NavMenu: React.FC<{ language: Language }> = ({ language }) => {
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default NavMenu
+export default NavMenu;
