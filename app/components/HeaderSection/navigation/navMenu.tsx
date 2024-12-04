@@ -15,12 +15,18 @@ const navItems: NavItems = {
 };
 
 type NavMenuProps = {
-    language: Language; 
+    language: Language;
 };
 
 const NavMenu: React.FC<NavMenuProps> = ({ language }) => {
-    const initialActiveLink = localStorage.getItem('activeLink') || navItems[language][0];
-    const [activeLink, setActiveLink] = useState<string>(initialActiveLink);
+    const [activeLink, setActiveLink] = useState<string>(navItems[language][0]);
+
+    useEffect(() => {
+        const storedActiveLink = localStorage.getItem('activeLink');
+        if (storedActiveLink && navItems[language].includes(storedActiveLink)) {
+            setActiveLink(storedActiveLink);
+        }
+    }, [language]); 
 
     useEffect(() => {
         const currentIndex = navItems['fr'].indexOf(activeLink) !== -1
@@ -41,8 +47,8 @@ const NavMenu: React.FC<NavMenuProps> = ({ language }) => {
                 <NavLink
                     key={index}
                     menu={navLink}
-                    isActive={activeLink === navLink} // Check if the link is active
-                    onClick={() => setActiveLink(navLink)} // Update active link on click
+                    isActive={activeLink === navLink} 
+                    onClick={() => setActiveLink(navLink)} 
                 />
             ))}
         </div>
