@@ -17,17 +17,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": ".", // Make sure to set baseUrl to the root
+    "baseUrl": ".", // Set baseUrl to the root
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@components/*": [
-        "app/components/*"
-      ], // Adjusted to match your structure
-      "@lib/*": [
-        "app/lib/*"
-      ] // Adjusted to match your structure
+      "@/*": ["./*"],
+      "@components/*": ["app/components/*"],
+      "@lib/*": ["app/lib/*"]
     },
     "plugins": [
       {

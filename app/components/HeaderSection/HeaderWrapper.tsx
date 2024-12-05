@@ -2,7 +2,7 @@
 import React, { ReactNode } from "react"
 import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
-import store, { persistor } from "../../lib/redux/store"
+import store, { persistor } from "@lib/redux/store"
 
 interface HeaderWrapperProps {
   children?: ReactNode

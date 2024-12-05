@@ -1,5 +1,5 @@
-import Header from "./components/HeaderSection/header"
-import HeaderWraper from "./components/HeaderSection/HeaderWrapper"
+import Header from  "@components/HeaderSection/header"
+import HeaderWraper from "@components/HeaderSection/HeaderWrapper"
 
 export default function Home() {
   return (

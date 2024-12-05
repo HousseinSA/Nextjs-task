@@ -1,9 +1,10 @@
 "use client"
 import React from "react"
 import { useDispatch } from "react-redux"
-import { setActiveLink } from "../../../lib/redux/stateSlice"
 import NavLink from "./navLink"
-import { languages } from "../../../lib/languages" 
+
+import { setActiveLink } from "@lib/redux/stateSlice"
+import { languages } from "@lib/languages" 
 
 const NavMenu: React.FC<{ activeLink: string; language: string }> = ({
   activeLink,

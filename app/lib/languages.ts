@@ -17,7 +17,7 @@ export const languages: Language[] = [
     content: {
       navItems: {
         Accueil: "الرئيسية",
-        Contact: "اتصل",
+        Contacte: "اتصل",
         "À propos": "حول",
       },
     },
