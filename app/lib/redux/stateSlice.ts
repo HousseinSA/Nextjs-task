@@ -7,7 +7,7 @@ interface StateSlice {
 
 const initialState: StateSlice = {
   language: "fr",
-  activeLink: "",
+  activeLink: "Accueil",
 }
 
 const stateSlice = createSlice({

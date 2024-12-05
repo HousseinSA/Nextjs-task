@@ -11,7 +11,6 @@ const NavMenu: React.FC<{ activeLink: string; language: string }> = ({
 }) => {
   const dispatch = useDispatch()
 
-
   const currentLanguage = languages.find((lang) => lang.code === language)
 
   const handleLinkClick = (link: string) => {
