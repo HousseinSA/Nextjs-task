@@ -29,9 +29,9 @@ export interface LanguageContent {
       flagSrc: '/arabic.webp',
       content: {
         navItems: {
-          'الرئيسية': 'Accueil',
-          'اتصل': 'Contact',
           'حول': 'À propos',
+          'اتصل': 'Contact',
+          'الرئيسية': 'Accueil',
         },
       },
     },
