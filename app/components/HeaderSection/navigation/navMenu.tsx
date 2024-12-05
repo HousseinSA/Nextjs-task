@@ -1,40 +1,37 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import NavLink from "./navLink";
+"use client"
+import React from "react"
+import { useDispatch } from "react-redux"
+import { setActiveLink } from "../../../lib/redux/stateSlice"
+import NavLink from "./navLink"
+import { languages } from "../../../lib/languages" 
 
-type Language = "fr" | "ar";
+const NavMenu: React.FC<{ activeLink: string; language: string }> = ({
+  activeLink,
+  language,
+}) => {
+  const dispatch = useDispatch()
 
-const navItems: Record<Language, string[]> = {
-  fr: ["Accueil", "Contact", "À propos"],
-  ar: ["الرئيسية", "اتصل", "معلومات عنا"],
-};
 
-const NavMenu: React.FC<{ language: Language }> = ({ language }) => {
-  const [activeLink, setActiveLink] = useState(navItems[language][0]);
+  const currentLanguage = languages.find((lang) => lang.code === language)
 
-  useEffect(() => {
-    const storedActiveLink = localStorage.getItem("activeLink");
-    if (storedActiveLink && navItems[language].includes(storedActiveLink)) {
-      setActiveLink(storedActiveLink);
-    }
-  }, [language]);
+  const handleLinkClick = (link: string) => {
+    dispatch(setActiveLink(link)) 
+  }
 
-  useEffect(() => {
-    localStorage.setItem("activeLink", activeLink);
-  }, [activeLink]);
+  const navItems = currentLanguage?.content.navItems || {}
 
   return (
-    <div className="flex-1 hidden md:flex justify-center items-center gap-3">
-      {navItems[language].map((navLink, index) => (
+    <ul className="flex-1 hidden md:flex justify-center items-center gap-3">
+      {Object.keys(navItems).map((navLink, index) => (
         <NavLink
           key={index}
           menu={navLink}
-          isActive={activeLink === navLink}
-          onClick={() => setActiveLink(navLink)}
+          isActive={activeLink === navLink} 
+          onClick={() => handleLinkClick(navLink)}
         />
       ))}
-    </div>
-  );
-};
+    </ul>
+  )
+}
 
-export default NavMenu;
+export default NavMenu

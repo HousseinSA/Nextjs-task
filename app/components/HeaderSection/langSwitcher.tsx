@@ -1,5 +1,6 @@
 import React from "react"
 import Image from "next/image"
+import { languages } from "../../lib/languages"
 
 type LangSwitcherProps = {
   language: string
@@ -10,22 +11,26 @@ const LangSwitcher: React.FC<LangSwitcherProps> = ({
   language,
   toggleLanguage,
 }) => {
+  const currentLanguage = languages.find((lang) => lang.code === language)
+
   return (
     <div className="hidden md:flex relative">
       <div
         className="flex gap-1.5 items-center cursor-pointer"
         onClick={toggleLanguage}
       >
-        <Image
-          className="w-4 h-4 rounded-full"
-          alt={language === "fr" ? "French Flag" : "Arabic Flag"}
-          src={language === "fr" ? "/french.webp" : "/arabic.webp"}
-          width={20}
-          height={20}
-        />
-        <span className="opacity-80">
-          {language === "fr" ? "Français" : "العربية"}
-        </span>
+        {currentLanguage && (
+          <>
+            <Image
+              className="w-4 h-4 rounded-full opacity-70"
+              alt={`${currentLanguage.name} Flag`}
+              src={currentLanguage.flagSrc}
+              width={64}
+              height={64}
+            />
+            <span className="opacity-70">{currentLanguage.name}</span>
+          </>
+        )}
       </div>
     </div>
   )
