@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        headerBg:'#0f172a ',
+        headerBg: "#0f172a ",
         bgColor: "#F1F5F9",
         textColor: "#0f172a",
       },
