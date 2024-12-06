@@ -12,7 +12,7 @@ const NavLink = ({ menu, isActive, onClick }: NavLinkProps) => {
   const activeClasses = "bg-bgColor text-textColor rounded border-none"
 
   const inactiveClasses =
-    "text-white border-transparent transition hover:border-gray-700 hover:text-gray-300"
+    "text-white border-transparent  hover:border-gray-700 hover:text-gray-300"
 
   return (
     <li

@@ -28,7 +28,7 @@ const LangSwitcher: React.FC<LangSwitcherProps> = ({
               width={64}
               height={64}
             />
-            <span className="opacity-70 cursor-pointer">{currentLanguage.name}</span>
+            <span className="opacity-70 ">{currentLanguage.name}</span>
           </>
         )}
       </div>
