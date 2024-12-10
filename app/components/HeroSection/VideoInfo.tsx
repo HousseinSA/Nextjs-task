@@ -1,7 +1,8 @@
 "use client"
 import React from "react"
 
-const VideoInfo = ({ videoInfo }) => {
+// @ts-expect-error test
+const VideoInfo :React.FC<VideoInfoProp>= ({ videoInfo }) => {
   return (
     <div className="md:ml-4 flex flex-col justify-between">
       <h1 className="text-3xl font-bold mb-2 text-headerBg">
