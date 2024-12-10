@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function GET(request) {
+export async function GET() {
     const { searchParams } = new URL(request.url);
     const videoId = searchParams.get('id');
     const geo = searchParams.get('geo') || 'US';
