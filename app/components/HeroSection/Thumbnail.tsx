@@ -1,5 +1,4 @@
 import React from "react"
-import Image from "next/image"
 
 interface ThumbnailProps {
     thumbnail: string
@@ -9,7 +8,7 @@ interface ThumbnailProps {
 
 const Thumbnail :React.FC<ThumbnailProps>= ({ thumbnail, title }) => {
   return (
-    <Image
+    <img
       src={thumbnail}
       alt={title}
       className="w-full md:w-1/3 h-auto rounded-lg mb-4 md:mb-0"
