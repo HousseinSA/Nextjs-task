@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react"
-import { VideoData,VideoInfoProp } from "@lib/types/videData"
+import { VideoData, VideoInfoProp } from "@lib/types/videData"
 import Thumbnail from "./Thumbnail"
 import VideoInfo from "./VideoInfo"
 const HeroSection = () => {
@@ -31,15 +31,14 @@ const HeroSection = () => {
   const { title, thumbnail, lengthSeconds, viewCount, isPrivate, id } =
     videoData
 
-
-  const videoInfo:VideoInfoProp = {
+  const videoInfo: VideoInfoProp = {
     lengthSeconds,
     viewCount,
     isPrivate,
     title,
     id,
   }
-
+  console.log(videoData, "testing video data")
   return (
     <div className="flex flex-col justify-around md:flex-row items-start p-8 mt-6 md:mt-8">
       <Thumbnail thumbnail={thumbnail} title={title} />
