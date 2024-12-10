@@ -35,6 +35,8 @@ const HeroSection = () => {
     isPrivate,
     title,id
   }
+
+  console.log(thumbnail)
   return (
     <div className="flex flex-col justify-around md:flex-row items-start p-8 mt-6 md:mt-8">
     <Thumbnail thumbnail={thumbnail} title={title} />
