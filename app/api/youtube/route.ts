@@ -44,7 +44,7 @@ export async function GET() {
 
         return new Response(JSON.stringify(filteredData), { status: 200 });
     } catch (error) {
-        console.error('Error fetching video data:', error.message);
+        // @ts-expect-error error 
         return new Response(JSON.stringify({ error: error.message || 'Failed to fetch video data' }), { status: 500 });
     }
 }
