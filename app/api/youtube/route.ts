@@ -1,6 +1,6 @@
 import axios from "axios"
 
-    // @ts-expect-error error
+// @ts-expect-error error
 export async function GET(request) {
   const { searchParams } = new URL(request.url)
   const videoId = searchParams.get("id")
@@ -59,9 +59,6 @@ export async function GET(request) {
 
     return new Response(JSON.stringify(filteredData), { status: 200 })
   } catch (error) {
-    return new Response(
-      JSON.stringify({ error: error.message || "Failed to fetch video data" }),
-      { status: 500 }
-    )
+    console.log(error)
   }
 }
