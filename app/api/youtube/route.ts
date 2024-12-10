@@ -58,7 +58,6 @@ export async function GET(request) {
     }
 
     return new Response(JSON.stringify(filteredData), { status: 200 })
-    // @ts-expect-error error
   } catch (error) {
     return new Response(
       JSON.stringify({ error: error.message || "Failed to fetch video data" }),

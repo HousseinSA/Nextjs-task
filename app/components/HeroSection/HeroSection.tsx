@@ -6,7 +6,7 @@ import VideoInfo from "./VideoInfo"
 const HeroSection = () => {
   const [videoData, setVideoData] = useState<VideoData | null>(null)
   const [loading, setLoading] = useState(true)
-  const videoId = "arj7oStGLkU" // Demo video ID
+  const videoId = "arj7oStGLkU" 
 
   useEffect(() => {
     const getVideoData = async () => {
@@ -36,7 +36,7 @@ const HeroSection = () => {
     title,id
   }
 
-  console.log(thumbnail)
+  console.log(typeof thumbnail )
   return (
     <div className="flex flex-col justify-around md:flex-row items-start p-8 mt-6 md:mt-8">
     <Thumbnail thumbnail={thumbnail} title={title} />
