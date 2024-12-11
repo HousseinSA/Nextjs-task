@@ -1,12 +1,10 @@
 import axios from "axios"
 
-// @ts-expect-error error
-export async function GET(request) {
-  const { searchParams } = new URL(request.url)
-  const videoId = searchParams.get("id")
-  const geo = searchParams.get("geo") || "US"
-  const lang = searchParams.get("lang") || "en"
-  const options = searchParams.get("options") || "1"
+export async function GET() {
+  const videoId = "arj7oStGLkU"
+  const geo = "US"
+  const lang = "en"
+  const options = "1"
 
   if (!videoId) {
     return new Response(JSON.stringify({ error: "Video ID is required" }), {
@@ -31,7 +29,6 @@ export async function GET(request) {
       }
     )
 
-    // Check if response data is valid
     if (!response.data || !response.data.id) {
       throw new Error("Invalid response from API")
     }
@@ -43,8 +40,9 @@ export async function GET(request) {
       thumbnail,
       viewCount,
       isPrivate,
-      likeCount,
+      thumbsCount,
     } = response.data
+    console.log("video data", response.data)
 
     const filteredData = {
       id,
@@ -54,11 +52,15 @@ export async function GET(request) {
       thumbnail: thumbnail[0]?.url,
       viewCount,
       isPrivate,
-      likeCount,
+      thumbsCount,
     }
 
     return new Response(JSON.stringify(filteredData), { status: 200 })
   } catch (error) {
-    console.log(error)
+    console.error(error)
+    return new Response(
+      JSON.stringify({ error: "Failed to fetch video data" }),
+      { status: 500 }
+    )
   }
 }
