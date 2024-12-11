@@ -1,54 +1,37 @@
-"use client"
-import React from "react"
+"use client";
+import React from "react";
+import { FaEye, FaThumbsUp, FaClock, FaUser } from "react-icons/fa";
+import InfoButton from "./videoInfo/InfoButton";
 
 export interface VideoInfoProp {
-  lengthSeconds: string
-  viewCount: string
-  isPrivate: boolean
-  title: string
-  id: string
-  channelTitle: string
-  likeCount: string
+  lengthSeconds: string;
+  viewCount: string;
+  isPrivate: boolean;
+  channelTitle: string;
+  id: string;
+  likeCount: string;
 }
 
 const VideoInfo: React.FC<{ videoInfo: VideoInfoProp }> = ({ videoInfo }) => {
-  const {
-    title,
-    id,
-    lengthSeconds,
-    viewCount,
-    isPrivate,
-    channelTitle,
-    likeCount,
-  } = videoInfo
+  const { lengthSeconds, viewCount, channelTitle, likeCount } =
+    videoInfo;
 
-  if (!videoInfo) return null
-  const likesValue = likeCount ? likeCount : "Not available"
+  const likesValue = likeCount ? likeCount : "Not available";
 
   return (
-    <div className="flex flex-col justify-between md:p-8 md:ml-4 md:w-2/3 ">
-      <h1 className="text-3xl font-bold mb-2 text-headerBg">{title}</h1>
-      <p className="mt-2 font-bold text-lg text-headerBg">
-        Video ID: <span className="text-gray-700">{id}</span>
-      </p>
-      <p className="mt-2 font-bold text-lg text-headerBg">
-        Channel: <span className="text-gray-700">{channelTitle}</span>
-      </p>
-      <p className="mt-2 font-bold text-lg text-headerBg">
-        Length: <span className="text-gray-700">{lengthSeconds} Seconds</span>
-      </p>
-      <p className="mt-2 font-bold text-lg text-headerBg">
-        Views: <span className="text-gray-700">{viewCount}</span>
-      </p>
-      <p className="mt-2 font-bold text-lg text-headerBg">
-        Likes: <span className="text-gray-700">{likesValue}</span>
-      </p>
-      <p className="mt-2 font-bold text-lg text-headerBg">
-        Private:{" "}
-        <span className="text-gray-700">{isPrivate ? "YES" : "NO"}</span>
-      </p>
+    <div className="flex flex-col justify-between md:px-8 md:ml-4 md:w-2/3 space-y-6">
+      <div className="flex flex-col space-y-3">
+        <InfoButton icon={<FaUser />} label="Channel name:" value={channelTitle} />
+        <InfoButton
+          icon={<FaClock />}
+          label="Video length:"
+          value={`${lengthSeconds} Seconds`}
+        />
+        <InfoButton icon={<FaEye />} label="Views:" value={viewCount} />
+        <InfoButton icon={<FaThumbsUp />} label="Likes:" value={likesValue} />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default VideoInfo
+export default VideoInfo;

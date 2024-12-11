@@ -5,7 +5,7 @@ export async function GET() {
 
   try {
     const response = await axios.get(
-      `https://yt-api.p.rapidapi.com/video/info?id=${videoId}`,
+      `https://yt-api.p.rapidapi.com/related?id=${videoId}`,
       {
         headers: {
           "x-rapidapi-key": process.env.RAPIDAPI_KEY,
@@ -14,32 +14,23 @@ export async function GET() {
       }
     )
 
-    const {
-      id,
-      title,
-      lengthSeconds,
-      channelTitle,
-      thumbnail,
-      viewCount,
-      isPrivate,
-      likeCount,
-    } = response.data
+    const videos = response.data.data
+    if (!videos || videos.length === 0) {
+      return new Response(
+        JSON.stringify({ error: "No related videos found" }),
+        { status: 404 }
+      )
+    }
 
-    console.log(response.data)
-    return new Response(
-      JSON.stringify({
-        id,
-        title,
-        lengthSeconds,
-        channelTitle,
-        thumbnail: thumbnail[0]?.url,
-        viewCount,
-        isPrivate,
-        likeCount,
-      }),
-      { status: 200 }
-    )
+    console.log(videos)
+    const randomIndex = Math.floor(Math.random() * videos.length)
+    const randomVideo = videos[randomIndex]
+
+    return new Response(JSON.stringify(randomVideo), { status: 200 })
   } catch (error) {
-    console.log(error)
+    console.error(error)
+    return new Response(JSON.stringify({ error: "Failed to fetch data" }), {
+      status: 500,
+    })
   }
 }
