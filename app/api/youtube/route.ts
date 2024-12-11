@@ -5,7 +5,7 @@ export async function GET() {
 
   try {
     const response = await axios.get(
-      `https://yt-api.p.rapidapi.com/related?id=${videoId}`,
+      `https://yt-api.p.rapidapi.com/related?id=${videoId}&lang=en`,
       {
         headers: {
           "x-rapidapi-key": process.env.RAPIDAPI_KEY,

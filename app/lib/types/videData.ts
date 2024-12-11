@@ -1,7 +1,7 @@
 export interface VideoData {
   id: string
   title: string
-  lengthSeconds: string
+  lengthText: string
   channelTitle: string
   thumbnail: string
   viewCount: string

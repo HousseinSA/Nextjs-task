@@ -34,8 +34,8 @@ const Thumbnail: React.FC<{
               </span>
             </div>
           </div>
-          <div className="absolute bottom-2 left-4 right-0 p-2 bg-transparent transition-transform duration-300 ease-in-out transform group-hover:scale-105">
-            <span className="text-2xl font-semibold text-gray-400 bg-bgColor p-2 rounded-md  hover:text-gray-300 transition-colors duration-300 ease-in-out">
+          <div className="absolute bottom-2 left-4 right-0 p-2 bg-transparent transition-transform  ease-in-out transform group-hover:scale-105">
+            <span className="text-2xl font-semibold text-white bg-textColor bg-opacity-50 p-2 rounded-md  hover:text-gray-300 transition-colors duration-300 ">
               {title}
             </span>
           </div>
