@@ -6,6 +6,5 @@ export interface VideoData {
   thumbnail: string
   viewCount: string
   isPrivate: boolean
-  thumbsCount: string
+  likeCount: string
 }
-

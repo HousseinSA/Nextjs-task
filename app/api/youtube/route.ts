@@ -2,26 +2,11 @@ import axios from "axios"
 
 export async function GET() {
   const videoId = "arj7oStGLkU"
-  const geo = "US"
-  const lang = "en"
-  const options = "1"
-
-  if (!videoId) {
-    return new Response(JSON.stringify({ error: "Video ID is required" }), {
-      status: 400,
-    })
-  }
 
   try {
     const response = await axios.get(
-      `https://yt-api.p.rapidapi.com/video/info`,
+      `https://yt-api.p.rapidapi.com/video/info?id=${videoId}`,
       {
-        params: {
-          id: videoId,
-          geo: geo,
-          lang: lang,
-          options: options,
-        },
         headers: {
           "x-rapidapi-key": process.env.RAPIDAPI_KEY,
           "x-rapidapi-host": "yt-api.p.rapidapi.com",
@@ -29,9 +14,6 @@ export async function GET() {
       }
     )
 
-    if (!response.data || !response.data.id) {
-      throw new Error("Invalid response from API")
-    }
     const {
       id,
       title,
@@ -40,27 +22,24 @@ export async function GET() {
       thumbnail,
       viewCount,
       isPrivate,
-      thumbsCount,
+      likeCount,
     } = response.data
-    console.log("video data", response.data)
 
-    const filteredData = {
-      id,
-      title,
-      lengthSeconds,
-      channelTitle,
-      thumbnail: thumbnail[0]?.url,
-      viewCount,
-      isPrivate,
-      thumbsCount,
-    }
-
-    return new Response(JSON.stringify(filteredData), { status: 200 })
-  } catch (error) {
-    console.error(error)
+    console.log(response.data)
     return new Response(
-      JSON.stringify({ error: "Failed to fetch video data" }),
-      { status: 500 }
+      JSON.stringify({
+        id,
+        title,
+        lengthSeconds,
+        channelTitle,
+        thumbnail: thumbnail[0]?.url,
+        viewCount,
+        isPrivate,
+        likeCount,
+      }),
+      { status: 200 }
     )
+  } catch (error) {
+    console.log(error)
   }
 }

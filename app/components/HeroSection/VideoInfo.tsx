@@ -8,6 +8,7 @@ export interface VideoInfoProp {
   title: string
   id: string
   channelTitle: string
+  likeCount: string
 }
 
 const VideoInfo: React.FC<{ videoInfo: VideoInfoProp }> = ({ videoInfo }) => {
@@ -18,9 +19,11 @@ const VideoInfo: React.FC<{ videoInfo: VideoInfoProp }> = ({ videoInfo }) => {
     viewCount,
     isPrivate,
     channelTitle,
+    likeCount,
   } = videoInfo
 
   if (!videoInfo) return null
+  const likesValue = likeCount ? likeCount : "Not available"
 
   return (
     <div className="flex flex-col justify-between md:p-8 md:ml-4 md:w-2/3 ">
@@ -38,7 +41,7 @@ const VideoInfo: React.FC<{ videoInfo: VideoInfoProp }> = ({ videoInfo }) => {
         Views: <span className="text-gray-700">{viewCount}</span>
       </p>
       <p className="mt-2 font-bold text-lg text-headerBg">
-        Likes: <span className="text-gray-700">Not available</span>
+        Likes: <span className="text-gray-700">{likesValue}</span>
       </p>
       <p className="mt-2 font-bold text-lg text-headerBg">
         Private:{" "}
