@@ -1,23 +1,25 @@
-export const formatNumber = (num: string) => {
-  const number = parseInt(num.replace(/,/g, ""), 10)
+export const formatNumber = (num: string | number) => {
+  const number =
+    typeof num === "string" ? parseInt(num.replace(/,/g, ""), 10) : num
+
   if (number >= 1e6) {
     return (number / 1e6).toFixed(1) + "M"
   } else if (number >= 1e3) {
     return (number / 1e3).toFixed(1) + "K"
   }
+
   return number.toString()
 }
 
-export const formatVideoLength = (lengthText: string): string => {
-  const parts = lengthText.split(":").map(Number)
-  const hours = parts.length === 3 ? parts[0] : 0
-  const minutes = parts.length >= 2 ? parts[parts.length - 2] : 0
-  const seconds = parts[parts.length - 1] || 0
+export const formatVideoLength = (lengthSeconds: number): string => {
+  const hours = Math.floor(lengthSeconds / 3600)
+  const minutes = Math.floor((lengthSeconds % 3600) / 60)
+  const seconds = lengthSeconds % 60
 
   return [
-    hours && `${hours}h`,
-    minutes && `${minutes} min`,
-    seconds && `${seconds} sec`,
+    hours > 0 ? `${hours}h` : null,
+    minutes > 0 ? `${minutes} min` : null,
+    seconds > 0 ? `${seconds} sec` : null,
   ]
     .filter(Boolean)
     .join(", ")

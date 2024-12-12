@@ -1,31 +1,37 @@
 "use client"
 import React from "react"
-import { FaEye, FaThumbsUp, FaClock, FaUser } from "react-icons/fa"
+import { Eye, ThumbsUp, Clock12, User } from "lucide-react"
 import InfoButton from "./videoInfo/InfoButton"
 import { VideoDetails } from "@lib/types/videData"
+import { formatNumber, formatVideoLength } from "@lib/NumberFormatter"
 
 const VideoInfo: React.FC<{ videoInfo: VideoDetails }> = ({ videoInfo }) => {
   const { lengthSeconds, viewCount, channelTitle, likeCount } = videoInfo
   const likesValue = likeCount || "Not available"
+  console.log(typeof lengthSeconds, typeof likeCount, typeof viewCount)
 
   return (
     <div className="flex flex-col justify-between p-2">
       <div className="flex flex-col space-y-1">
         <InfoButton
-          icon={<FaUser />}
+          icon={<User />}
           title="Channel name:"
           titleInfo={channelTitle}
         />
         <InfoButton
-          icon={<FaClock />}
+          icon={<Clock12 />}
           title="Video length:"
-          titleInfo={lengthSeconds}
+          titleInfo={formatVideoLength(lengthSeconds)}
         />
-        <InfoButton icon={<FaEye />} title="Views:" titleInfo={viewCount} />
         <InfoButton
-          icon={<FaThumbsUp />}
+          icon={<Eye />}
+          title="Views:"
+          titleInfo={formatNumber(viewCount)}
+        />
+        <InfoButton
+          icon={<ThumbsUp />}
           title="Likes:"
-          titleInfo={likesValue}
+          titleInfo={formatNumber(likesValue)}
         />
       </div>
     </div>
