@@ -35,14 +35,10 @@ const HeroSection = () => {
 
   if (!videoData) return null
 
-  console.log(videoData)
   return (
-    <div className="flex flex-col gap-6 md:gap-0 p-8 mt-6 md:flex-row md:items-start md:mt-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-8 mt-6">
       {videoData.map((video) => (
-        <div
-          key={video.id}
-          className="flex flex-col md:flex-row md:items-start"
-        >
+        <div key={video.id} className="flex flex-col">
           <Thumbnail
             thumbnail={video.thumbnail.url}
             title={video.title}

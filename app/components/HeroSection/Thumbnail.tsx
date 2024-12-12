@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import Link from "next/link"
 import React from "react"
@@ -10,19 +11,18 @@ const Thumbnail: React.FC<{
   isPrivate: boolean
 }> = ({ thumbnail, title, videoId, isPrivate }) => {
   const videoUrl = `https://www.youtube.com/watch?v=${videoId}`
-
   const statusText = isPrivate ? "Private" : "Public"
 
   return (
-    <div className="relative w-full h-auto cursor-pointer group">
+    <div className="relative w-full h-auto cursor-pointer group mb-4">
       <Link href={videoUrl} target="_blank">
         <div className="relative">
           <Image
             src={thumbnail}
             alt={title}
-            width={400}
-            height={400}
-            className="object-cover w-full h-full rounded-lg transition-shadow duration-300 ease-in-out group-hover:shadow-inner"
+            width={300} // Adjust width for your card size
+            height={200} // Adjust height for your card size
+            className="object-cover w-full h-48 rounded-lg transition-shadow duration-300 ease-in-out group-hover:shadow-inner"
           />
           <div className="absolute top-2 right-2 flex items-center">
             <div className="relative flex items-center gap-2">
@@ -39,7 +39,7 @@ const Thumbnail: React.FC<{
             </div>
           </div>
           <div className="absolute bottom-4 left-4 right-0 p-2 bg-transparent transition-transform ease-in-out transform group-hover:scale-105">
-            <span className="text-lg font-semibold text-white bg-textColor bg-opacity-70 p-2 rounded-md shadow-md transition-colors duration-300 hover:text-gray-300">
+            <span className="text-sm font-semibold text-white bg-textColor bg-opacity-70 p-2 rounded-md shadow-md transition-colors duration-300 hover:text-gray-300">
               {title}
             </span>
           </div>

@@ -35,7 +35,7 @@ const Header: React.FC = () => {
 
   return (
     <div
-      className={`sticky top-0 bg-headerBg flex items-center justify-between p-5 gap-x-10 transition-colors duration-300 ${
+      className={`sticky top-0 z-50 bg-headerBg flex items-center justify-between p-5 gap-x-10 transition-colors duration-300 ${
         language === "ar" ? "flex-row-reverse" : ""
       }`}
     >

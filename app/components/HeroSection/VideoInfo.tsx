@@ -2,15 +2,15 @@
 import React from "react"
 import { FaEye, FaThumbsUp, FaClock, FaUser } from "react-icons/fa"
 import InfoButton from "./videoInfo/InfoButton"
-// import { formatNumber, formatVideoLength } from "@lib/NumberFormatter"
 import { VideoDetails } from "@lib/types/videData"
 
 const VideoInfo: React.FC<{ videoInfo: VideoDetails }> = ({ videoInfo }) => {
   const { lengthSeconds, viewCount, channelTitle, likeCount } = videoInfo
   const likesValue = likeCount || "Not available"
+
   return (
-    <div className="flex flex-col justify-between md:px-8 md:ml-4 md:w-2/3 space-y-6">
-      <div className="flex flex-col space-y-3">
+    <div className="flex flex-col justify-between p-2">
+      <div className="flex flex-col space-y-1">
         <InfoButton
           icon={<FaUser />}
           title="Channel name:"
