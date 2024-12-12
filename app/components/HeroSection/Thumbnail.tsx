@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import React from "react"
 import { FaLock, FaUnlock } from "react-icons/fa"
@@ -16,9 +17,11 @@ const Thumbnail: React.FC<{
     <div className="relative w-full h-auto cursor-pointer group">
       <Link href={videoUrl} target="_blank">
         <div className="relative">
-          <img
+          <Image
             src={thumbnail}
             alt={title}
+            width={400}
+            height={400}
             className="object-cover w-full h-full rounded-lg transition-shadow duration-300 ease-in-out group-hover:shadow-inner"
           />
           <div className="absolute top-2 right-2 flex items-center">

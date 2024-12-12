@@ -3,7 +3,7 @@ import React from "react"
 interface InfoButtonProps {
   icon: React.ReactNode
   title: string
-  titleInfo: string
+  titleInfo: string |number
 }
 
 const InfoButton: React.FC<InfoButtonProps> = ({ icon, title, titleInfo }) => {
