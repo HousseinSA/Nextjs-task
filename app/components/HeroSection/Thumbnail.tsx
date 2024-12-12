@@ -13,7 +13,7 @@ const Thumbnail: React.FC<{
   const statusText = isPrivate ? "Private" : "Public"
 
   return (
-    <div className="relative w-full h-auto cursor-pointer group mb-4 overflow-hidden rounded-lg shadow-lg">
+    <div className="relative w-full h-auto cursor-pointer group overflow-hidden rounded-lg shadow-lg">
       <Link href={videoUrl} target="_blank">
         <div className="relative ">
           <Image
@@ -25,21 +25,27 @@ const Thumbnail: React.FC<{
           />
           <div className="absolute top-2 right-2 flex items-center">
             <div className="relative flex items-center gap-2">
-              <span className="ml-2 text-sm font-semibold text-black text-opacity-70 bg-white p-1 rounded-md opacity-0 transform scale-x-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-x-100">
+              <span className="ml-2 text-sm font-semibold text-black text-opacity-70 bg-white p-1 rounded-md opacity-0 transform  transition-all duration-300 group-hover:opacity-100 ">
                 {statusText}
               </span>
-              <div className="p-2 rounded-full bg-white transition-transform duration-300 ease-in-out cursor-pointer flex items-center justify-center">
+              <div className="p-2 rounded-full bg-white bg-opacity-90 transition-transform duration-300 ease-in-out cursor-pointer flex items-center justify-center">
                 {isPrivate ? (
-                  <LockKeyhole className="text-red-500 text-2xl transition-transform duration-300 group-hover:scale-110" />
+                  <LockKeyhole
+                    size={20}
+                    className="text-red-500 text-2xl transition-transform duration-300 group-hover:scale-110"
+                  />
                 ) : (
-                  <LockKeyholeOpen className="text-green-500 text-2xl transition-transform duration-300 group-hover:scale-110" />
+                  <LockKeyholeOpen
+                    size={20}
+                    className="text-green-500 text-2xl transition-transform duration-300 group-hover:scale-110"
+                  />
                 )}
               </div>
             </div>
           </div>
-          <div className="absolute bottom-4 left-4 right-0 p-2 bg-black bg-opacity-70 transition-transform ease-in-out transform group-hover:scale-105 rounded-md">
-            <span className="text-md font-bold text-white">
-              {title.length > 30 ? `${title.slice(0, 45)}...` : title}
+          <div className="absolute bottom-0 w-full  right-0 p-2 bg-black bg-opacity-70 transition-transform ease-in-out transform ">
+            <span className="text-lg font-bold text-white">
+              {title.length > 30 ? `${title.slice(0, 40)}...` : title}
             </span>
           </div>
         </div>
