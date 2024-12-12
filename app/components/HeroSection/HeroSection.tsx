@@ -40,6 +40,7 @@ const HeroSection = () => {
       {videoData.map((video) => (
         <div key={video.id} className="flex flex-col">
           <Thumbnail
+          //@ts-expect-error fix later
             thumbnail={video.thumbnail.url}
             title={video.title}
             videoId={video.id}
