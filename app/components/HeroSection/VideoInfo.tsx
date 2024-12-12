@@ -2,7 +2,7 @@
 import React from "react"
 import { FaEye, FaThumbsUp, FaClock, FaUser } from "react-icons/fa"
 import InfoButton from "./videoInfo/InfoButton"
-import { formatNumber } from "@lib/NumberFormatter"
+import { formatNumber, formatVideoLength } from "@lib/NumberFormatter"
 
 export interface VideoInfoProp {
   viewCount: string
@@ -27,7 +27,7 @@ const VideoInfo: React.FC<{ videoInfo: VideoInfoProp }> = ({ videoInfo }) => {
         <InfoButton
           icon={<FaClock />}
           title="Video length:"
-          titleInfo={`${lengthText} Min`}
+          titleInfo={formatVideoLength(lengthText)}
         />
         <InfoButton
           icon={<FaEye />}

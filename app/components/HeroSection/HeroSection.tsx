@@ -24,11 +24,10 @@ const HeroSection = () => {
 
   if (!videoData) return null
   const { thumbnail, title, videoId, isPrivate } = videoData
-  //@ts-expect-error nothing
 
+  //@ts-expect-error nothing
   const thumbnailUrl = thumbnail[thumbnail.length - 1].url
 
-  console.log(videoData)
   return (
     <div className="flex flex-col gap-6 md:gap-0 p-8 mt-6 md:flex-row md:items-start md:mt-8">
       <Thumbnail
