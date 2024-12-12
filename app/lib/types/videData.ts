@@ -1,5 +1,5 @@
 export interface VideoData {
-  id: string
+  videoId: string
   title: string
   lengthText: string
   channelTitle: string

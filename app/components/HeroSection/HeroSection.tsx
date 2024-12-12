@@ -23,7 +23,6 @@ const HeroSection = () => {
   }, [])
 
   if (!videoData) return null
-  //@ts-expect-error nothing
   const { thumbnail, title, videoId, isPrivate } = videoData
   //@ts-expect-error nothing
 
@@ -31,7 +30,7 @@ const HeroSection = () => {
 
   console.log(videoData)
   return (
-    <div className="flex flex-col p-8 mt-6 md:flex-row md:items-start md:mt-8">
+    <div className="flex flex-col gap-6 md:gap-0 p-8 mt-6 md:flex-row md:items-start md:mt-8">
       <Thumbnail
         thumbnail={thumbnailUrl}
         title={title}
