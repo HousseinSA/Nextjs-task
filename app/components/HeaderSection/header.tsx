@@ -3,9 +3,9 @@ import React from "react"
 import LangSwitcher from "@components/HeaderSection/langSwitcher"
 import NavMenu from "@components/HeaderSection/navigation/navMenu"
 import Logo from "./logo"
-import {useDispatch, useSelector } from "react-redux"
-import {setLanguage, setActiveLink } from "@lib/redux/stateSlice"
-import {languages} from "@lib/languages"
+import { useDispatch, useSelector } from "react-redux"
+import { setLanguage, setActiveLink } from "@lib/redux/stateSlice"
+import { languages } from "@lib/languages"
 
 interface StatesProps {
   language: string
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
       }`}
     >
       <Logo />
-      <NavMenu activeLink={activeLink} language={language}  />
+      <NavMenu activeLink={activeLink} language={language} />
       <LangSwitcher language={language} toggleLanguage={toggleLanguage} />
     </div>
   )
