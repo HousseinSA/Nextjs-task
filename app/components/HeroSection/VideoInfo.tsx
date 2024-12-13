@@ -32,7 +32,7 @@ const VideoInfo: React.FC<{ videoInfo: VideoDetails }> = ({ videoInfo }) => {
   ]
 
   return (
-    <div className="flex flex-col justify-between p-2">
+    <div className="flex flex-col justify-between p-4">
       <div className="flex flex-col space-y-1">
         {infoItems.map((item, index) => (
           <InfoButton

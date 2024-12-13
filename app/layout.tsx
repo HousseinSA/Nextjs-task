@@ -1,4 +1,7 @@
 import type { Metadata } from "next"
+import Header from "@components/HeaderSection/header"
+import HeaderWraper from "@components/HeaderSection/HeaderWrapper"
+
 import "./globals.css"
 export const metadata: Metadata = {
   title: "Techno-trans header ",
@@ -12,7 +15,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`overflow-y-auto`}>{children}</body>
+      <body className={`overflow-y-auto`}>
+        <HeaderWraper>
+          <Header />
+        </HeaderWraper>
+        {children}
+      </body>
     </html>
   )
 }
