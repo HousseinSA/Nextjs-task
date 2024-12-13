@@ -38,10 +38,7 @@ const HeroSection = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-3 md:p-8 mt-6">
       {videoData.map((video) => (
-        <div
-          key={video.id}
-          className="flex flex-col bg-textColor rounded-md  gap-y-2"
-        >
+        <div key={video.id} className="flex flex-col bg-textColor rounded-md ">
           <Thumbnail
             // @ts-expect-error fix later
             thumbnail={video.thumbnail.url}
