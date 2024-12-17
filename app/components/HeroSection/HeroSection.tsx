@@ -4,6 +4,7 @@ import axios from "axios"
 import { VideoDetails } from "@lib/types/videData"
 import Thumbnail from "./Thumbnail"
 import VideoInfo from "./VideoInfo"
+import YoutubeCard from "../figmaCard/test"
 
 const HeroSection = () => {
   const [videoData, setVideoData] = useState<VideoDetails[] | null>(null)
@@ -23,6 +24,8 @@ const HeroSection = () => {
           isPrivate: video.isPrivate,
           category: video.category,
           likeCount: video.likeCount,
+          channelThumbnail: video.channelThumbnail,
+          uploadDate: video.uploadDate,
         }))
         setVideoData(filteredDetails)
       } catch (error) {
@@ -36,18 +39,9 @@ const HeroSection = () => {
   if (!videoData) return null
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-3 md:p-8 mt-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 p-3 md:p-8 mt-6">
       {videoData.map((video) => (
-        <div key={video.id} className="flex flex-col bg-textColor rounded-md ">
-          <Thumbnail
-            // @ts-expect-error fix later
-            thumbnail={video.thumbnail.url}
-            title={video.title}
-            videoId={video.id}
-            isPrivate={video.isPrivate}
-          />
-          <VideoInfo videoInfo={video} />
-        </div>
+        <YoutubeCard key={video.id} videoData={video} />
       ))}
     </div>
   )

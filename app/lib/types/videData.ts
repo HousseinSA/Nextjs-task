@@ -14,6 +14,8 @@ export interface VideoDetails {
   isPrivate: boolean
   category: string
   likeCount: number
+  channelThumbnail: string[]
+  uploadDate: string
 }
 
 export interface ApiResponse {

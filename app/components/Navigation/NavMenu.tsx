@@ -9,7 +9,6 @@ const NavMenu = () => {
     setActiveLink(active)
   }
 
-  console.log(activeLink)
   return (
     <ul className="flex-1 hidden md:flex justify-center items-center gap-3">
       {navLinks.map((navLink, index) => {
