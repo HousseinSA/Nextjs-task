@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "next/image"
 import { formatNumber, ShorterString, timeAgo } from "@lib/FormattingFunctions"
-import { EllipsisVertical } from "lucide-react"
+import { Check, EllipsisVertical } from "lucide-react"
 interface VideoInfoProps {
   channel: string
   title: string
@@ -37,7 +37,10 @@ const VideoInfo: React.FC<VideoInfoProps> = ({
           {ShorterString(title, 15)}
         </h3>
         <div className="mt-2">
-          <span className="text-base text-gray-500">{channelTitle}</span>
+          <div className="flex items-center gap-1">
+            <span className="text-base text-gray-500">{channelTitle}</span>
+            <Check size={15} className="rounded-full p-1 bg-gray-300" />
+          </div>
           <p className="text-base text-gray-500">
             {formatNumber(viewCount)} views
             <span className="h-[17px] mx-1 font-bold">.</span>
@@ -51,7 +54,7 @@ const VideoInfo: React.FC<VideoInfoProps> = ({
           isActivePopup ? "bg-gray-300" : "bg-transparent"
         } p-2`}
         onClick={() => {
-          setActivePopupId(isActivePopup ? '' : videoId)
+          setActivePopupId(isActivePopup ? "" : videoId)
         }}
       />
     </div>
