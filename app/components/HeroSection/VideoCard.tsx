@@ -1,11 +1,11 @@
 import React, { useRef, useEffect } from "react"
 import { VideoDetails } from "@lib/types/videData"
-import Thumbnail from "../HeroSection/Thumbnail"
-import InfoPopUp from "../HeroSection/videoInfo/InfoPopUp"
-import VideoInfo from "../HeroSection/VideoInfo"
+import Thumbnail from "./Thumbnail"
+import InfoPopUp from "./videoInfo/InfoPopUp"
+import VideoInfo from "./videoInfo/VideoInfo"
 interface videoCardProps extends VideoDetails {
   key: string
-  activePopupId: string
+  activePopupId: null
   setActivePopupId: (id: string) => void
   videoData: VideoDetails
 }
@@ -41,7 +41,7 @@ const VideoCard: React.FC<videoCardProps> = ({
         popupRef.current &&
         !popupRef.current.contains(event.target as Node)
       ) {
-        setActivePopupId("")
+        setActivePopupId("null")
       }
     }
 
