@@ -1,5 +1,5 @@
 import React from "react"
-import { formatNumber, ShorterString } from "../../../lib/FormattingFunctions"
+import { formatNumber, ShorterString } from "@lib/FormattingFunctions"
 interface InfoPopProps {
   isActivePopup: boolean
   popupRef: React.RefObject<HTMLDivElement>

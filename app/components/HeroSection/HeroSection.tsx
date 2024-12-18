@@ -6,7 +6,7 @@ import VideoCard from "./VideoCard"
 
 const HeroSection = () => {
   const [videoData, setVideoData] = useState<VideoDetails[] | null>(null)
-  const [activePopupId, setActivePopupId] = useState("null")
+  const [activePopupId, setActivePopupId] = useState<string | null>(null)
   useEffect(() => {
     const getVideoData = async () => {
       try {
@@ -44,7 +44,6 @@ const HeroSection = () => {
         <VideoCard
           key={video.id}
           videoData={video}
-          // @ts-expect-error fix later
           activePopupId={activePopupId}
           setActivePopupId={setActivePopupId}
         />

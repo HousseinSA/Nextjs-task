@@ -3,11 +3,11 @@ import { VideoDetails } from "@lib/types/videData"
 import Thumbnail from "./Thumbnail"
 import InfoPopUp from "./videoInfo/InfoPopUp"
 import VideoInfo from "./videoInfo/VideoInfo"
-interface videoCardProps extends VideoDetails {
+interface videoCardProps {
   key: string
-  activePopupId: null
-  setActivePopupId: (id: string) => void
   videoData: VideoDetails
+  activePopupId: string | null
+  setActivePopupId: (id: string | null) => void
 }
 
 const VideoCard: React.FC<videoCardProps> = ({
@@ -41,7 +41,7 @@ const VideoCard: React.FC<videoCardProps> = ({
         popupRef.current &&
         !popupRef.current.contains(event.target as Node)
       ) {
-        setActivePopupId("null")
+        setActivePopupId(null)
       }
     }
 
