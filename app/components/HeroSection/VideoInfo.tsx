@@ -1,48 +1,59 @@
-"use client"
 import React from "react"
-import { Eye, ThumbsUp, Clock12, TvMinimalPlay } from "lucide-react"
-import InfoButton from "./videoInfo/InfoButton"
-import { VideoDetails } from "@lib/types/videData"
-import { formatNumber, formatVideoLength } from "@lib/NumberFormatter"
+import Image from "next/image"
+import { formatNumber, ShorterString, timeAgo } from "@lib/FormattingFunctions"
+import { EllipsisVertical } from "lucide-react"
+interface VideoInfoProps {
+  channel: string
+  title: string
+  viewCount: number
+  channelTitle: string
+  uploadDate: string
+  videoId: string
+  setActivePopupId: (id: string) => void
+  isActivePopup: boolean
+}
 
-const VideoInfo: React.FC<{ videoInfo: VideoDetails }> = ({ videoInfo }) => {
-  const { lengthSeconds, viewCount, channelTitle, likeCount } = videoInfo
-
-  const infoItems = [
-    {
-      icon: <TvMinimalPlay size={20} color="white" />,
-      title: "Channel name:",
-      info: channelTitle,
-    },
-    {
-      icon: <Clock12 size={20} color="white" />,
-      title: "Video length:",
-      info: formatVideoLength(lengthSeconds),
-    },
-    {
-      icon: <Eye size={20} color="white" />,
-      title: "Views:",
-      info: formatNumber(viewCount),
-    },
-    {
-      icon: <ThumbsUp size={20} color="white" />,
-      title: "Likes:",
-      info: formatNumber(likeCount),
-    },
-  ]
-
+const VideoInfo: React.FC<VideoInfoProps> = ({
+  channel,
+  viewCount,
+  videoId,
+  title,
+  channelTitle,
+  uploadDate,
+  setActivePopupId,
+  isActivePopup,
+}) => {
   return (
-    <div className="flex flex-col justify-between p-4">
-      <div className="flex flex-col space-y-1">
-        {infoItems.map((item, index) => (
-          <InfoButton
-            key={index}
-            icon={item.icon}
-            title={item.title}
-            titleInfo={item.info}
-          />
-        ))}
+    <div className="py-4 flex gap-4 items-start">
+      <Image
+        className="w-10 h-10 rounded-full"
+        alt="Channel Logo"
+        src={channel}
+        width={36}
+        height={36}
+      />
+      <div className="flex-1">
+        <h3 className="text-[16px] font-semibold text-gray-800 leading-tight">
+          {ShorterString(title, 15)}
+        </h3>
+        <div className="mt-2">
+          <span className="text-base text-gray-500">{channelTitle}</span>
+          <p className="text-base text-gray-500">
+            {formatNumber(viewCount)} views
+            <span className="h-[17px] mx-1 font-bold">.</span>
+            {timeAgo(uploadDate)}
+          </p>
+        </div>
       </div>
+      <EllipsisVertical
+        size={35}
+        className={`cursor-pointer transition-all duration-300 rounded-full ${
+          isActivePopup ? "bg-gray-300" : "bg-transparent"
+        } p-2`}
+        onClick={() => {
+          setActivePopupId(isActivePopup ? '' : videoId)
+        }}
+      />
     </div>
   )
 }

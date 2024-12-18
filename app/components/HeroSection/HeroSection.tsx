@@ -2,13 +2,11 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { VideoDetails } from "@lib/types/videData"
-import Thumbnail from "./Thumbnail"
-import VideoInfo from "./VideoInfo"
-import YoutubeCard from "../figmaCard/test"
+import VideoCard from "../figmaCard/VideoCard"
 
 const HeroSection = () => {
   const [videoData, setVideoData] = useState<VideoDetails[] | null>(null)
-
+  const [activePopupId, setActivePopupId] = useState("null")
   useEffect(() => {
     const getVideoData = async () => {
       try {
@@ -26,6 +24,8 @@ const HeroSection = () => {
           likeCount: video.likeCount,
           channelThumbnail: video.channelThumbnail,
           uploadDate: video.uploadDate,
+          commentCount: video.commentCount,
+          description: video.description,
         }))
         setVideoData(filteredDetails)
       } catch (error) {
@@ -41,7 +41,12 @@ const HeroSection = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 p-3 md:p-8 mt-6">
       {videoData.map((video) => (
-        <YoutubeCard key={video.id} videoData={video} />
+        <VideoCard
+          key={video.id}
+          videoData={video}
+          activePopupId={activePopupId}
+          setActivePopupId={setActivePopupId}
+        />
       ))}
     </div>
   )

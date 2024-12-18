@@ -11,7 +11,6 @@ export const formatNumber = (num: string | number) => {
   return number.toString()
 }
 
-
 export const formatVideoLength = (lengthSeconds: number): string => {
   const hours = Math.floor(lengthSeconds / 3600)
   const minutes = Math.floor((lengthSeconds % 3600) / 60)
@@ -26,11 +25,10 @@ export const formatVideoLength = (lengthSeconds: number): string => {
   }
 }
 
-
 export const timeAgo = (uploadDate: string) => {
   const date = new Date(uploadDate)
   const now = new Date()
-  const seconds = Math.floor((now - date) / 1000)
+  const seconds = Math.floor((now.getTime() - date.getTime()) / 1000)
 
   const intervals = [
     { label: "year", value: 31536000 }, // 60 * 60 * 24 * 365
@@ -48,4 +46,11 @@ export const timeAgo = (uploadDate: string) => {
   }
 
   return `${seconds} second${seconds === 1 ? "" : "s"} ago`
+}
+
+export const ShorterString = (description: string, maxWords: number) => {
+  const words = description.split(" ")
+  return words.length > maxWords
+    ? words.slice(0, maxWords).join(" ") + "..."
+    : description
 }

@@ -5,17 +5,19 @@ export interface Thumbnail {
 }
 
 export interface VideoDetails {
-  id: string
-  title: string
-  lengthSeconds: number
-  channelTitle: string
-  thumbnail: Thumbnail[]
-  viewCount: number
-  isPrivate: boolean
-  category: string
-  likeCount: number
-  channelThumbnail: string[]
-  uploadDate: string
+  id: string;
+  title: string;
+  lengthSeconds: number;
+  channelTitle: string;
+  thumbnail: Thumbnail[]; 
+  viewCount: number;
+  isPrivate: boolean;
+  category: string;
+  likeCount: number;
+  channelThumbnail: string[];
+  uploadDate: string;
+  commentCount: string;
+  description: string;
 }
 
 export interface ApiResponse {
