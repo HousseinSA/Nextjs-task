@@ -20,7 +20,7 @@ const Thumbnail: React.FC<{
           <Image
             className="w-full h-[198px] object-cover rounded-lg"
             alt="Thumbnail"
-            // @ts-expect-error fix later
+            // @ts-expect-error correct value
             src={thumbnail.url}
             width={352}
             height={198}

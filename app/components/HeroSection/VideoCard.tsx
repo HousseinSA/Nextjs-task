@@ -29,7 +29,7 @@ const VideoCard: React.FC<videoCardProps> = ({
     commentCount,
     category,
   } = videoData
-  // @ts-expect-error fix later
+  // @ts-expect-error correct value
   const channel = channelThumbnail[0]?.url
   const popupRef = useRef<HTMLDivElement>(null)
 
@@ -54,7 +54,7 @@ const VideoCard: React.FC<videoCardProps> = ({
   return (
     <div className="w-full overflow-hidden relative">
       <Thumbnail
-        // @ts-expect-error fix later
+        // @ts-expect-error correct value
         thumbnail={thumbnail}
         videoId={id}
         isPrivate={isPrivate}
