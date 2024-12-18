@@ -31,11 +31,11 @@ export const timeAgo = (uploadDate: string) => {
   const seconds = Math.floor((now.getTime() - date.getTime()) / 1000)
 
   const intervals = [
-    { label: "year", value: 31536000 }, // 60 * 60 * 24 * 365
-    { label: "month", value: 2592000 }, // 60 * 60 * 24 * 30
-    { label: "day", value: 86400 }, // 60 * 60 * 24
-    { label: "hour", value: 3600 }, // 60 * 60
-    { label: "minute", value: 60 }, // 60
+    { label: "year", value: 31536000 }, 
+    { label: "month", value: 2592000 },
+    { label: "day", value: 86400 }, 
+    { label: "hour", value: 3600 }, 
+    { label: "minute", value: 60 }, 
   ]
 
   for (const { label, value } of intervals) {
