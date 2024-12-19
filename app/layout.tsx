@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Header from "@components/HeaderSection/header"
-import HeaderWraper from "@components/HeaderSection/HeaderWrapper"
+import ReduxWrapper from "@/app/lib/redux/ReduxWrapper"
 
 import "./globals.css"
 export const metadata: Metadata = {
@@ -16,9 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`overflow-y-auto`}>
-        <HeaderWraper>
+        <ReduxWrapper>
           <Header />
-        </HeaderWraper>
+        </ReduxWrapper>
         {children}
       </body>
     </html>

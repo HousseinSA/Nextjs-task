@@ -7,12 +7,14 @@ import VideoCard from "./VideoCard"
 const HeroSection = () => {
   const [videoData, setVideoData] = useState<VideoDetails[] | null>(null)
   const [activePopupId, setActivePopupId] = useState<string | null>(null)
+  const [popUpState, setPopupState] = useState<boolean>(false)
+
   useEffect(() => {
     const getVideoData = async () => {
       try {
         const response = await axios.get(`/api/youtube?`)
-        const randomVideo = response.data.data
-        const filteredDetails = randomVideo.map((video: VideoDetails) => ({
+        const randomVideos = response.data.data
+        const filteredDetails = randomVideos.map((video: VideoDetails) => ({
           id: video.id,
           title: video.title,
           lengthSeconds: video.lengthSeconds,
@@ -46,6 +48,8 @@ const HeroSection = () => {
           videoData={video}
           activePopupId={activePopupId}
           setActivePopupId={setActivePopupId}
+          setPopupState={() => setPopupState((prev) => !prev)}
+          popUpState={popUpState}
         />
       ))}
     </div>

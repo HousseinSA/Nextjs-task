@@ -4,11 +4,11 @@ import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
 import store, { persistor } from "@lib/redux/store"
 
-interface HeaderWrapperProps {
+interface ReduxWrapperProps {
   children?: ReactNode
 }
 
-const HeaderWraper: React.FC<HeaderWrapperProps> = ({ children }) => {
+const ReduxWrapper: React.FC<ReduxWrapperProps> = ({ children }) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -18,4 +18,4 @@ const HeaderWraper: React.FC<HeaderWrapperProps> = ({ children }) => {
   )
 }
 
-export default HeaderWraper
+export default ReduxWrapper

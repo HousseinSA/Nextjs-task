@@ -1,19 +1,24 @@
 import React, { useRef, useEffect } from "react"
 import { VideoDetails } from "@lib/types/videData"
 import Thumbnail from "./Thumbnail"
-import InfoPopUp from "./videoInfo/InfoPopUp"
 import VideoInfo from "./videoInfo/VideoInfo"
+import DetailsPopup from "./videoInfo/DetailsPopup"
+
 interface videoCardProps {
   key: string
   videoData: VideoDetails
   activePopupId: string | null
   setActivePopupId: (id: string | null) => void
+  popUpState: boolean
+  setPopupState: () => void
 }
 
 const VideoCard: React.FC<videoCardProps> = ({
   videoData,
-  activePopupId,
   setActivePopupId,
+  activePopupId,
+  setPopupState,
+  popUpState,
 }) => {
   const {
     thumbnail,
@@ -29,11 +34,10 @@ const VideoCard: React.FC<videoCardProps> = ({
     commentCount,
     category,
   } = videoData
-  // @ts-expect-error correct value
   const channel = channelThumbnail[0]?.url
   const popupRef = useRef<HTMLDivElement>(null)
 
-  const isActivePopup = activePopupId === id
+  const isActivePopup = activePopupId === id && popUpState
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -45,8 +49,13 @@ const VideoCard: React.FC<videoCardProps> = ({
       }
     }
 
-    document.addEventListener("mousedown", handleClickOutside)
+    const timeout = setTimeout(
+      () => document.addEventListener("mousedown", handleClickOutside),
+      300
+    )
+
     return () => {
+      clearTimeout(timeout)
       document.removeEventListener("mousedown", handleClickOutside)
     }
   }, [setActivePopupId])
@@ -54,29 +63,29 @@ const VideoCard: React.FC<videoCardProps> = ({
   return (
     <div className="w-full overflow-hidden relative">
       <Thumbnail
-        // @ts-expect-error correct value
         thumbnail={thumbnail}
         videoId={id}
         isPrivate={isPrivate}
         lengthSeconds={lengthSeconds}
-      />
+      >
+        <DetailsPopup
+          isActivePopup={isActivePopup}
+          popupRef={popupRef}
+          commentCount={commentCount}
+          category={category}
+          description={description}
+        />
+      </Thumbnail>
       <VideoInfo
         videoId={id}
         channel={channel}
         isActivePopup={isActivePopup}
         setActivePopupId={setActivePopupId}
+        setPopupState={setPopupState}
         title={title}
         viewCount={viewCount}
         channelTitle={channelTitle}
         uploadDate={uploadDate}
-      />
-
-      <InfoPopUp
-        isActivePopup={isActivePopup}
-        popupRef={popupRef}
-        commentCount={commentCount}
-        category={category}
-        description={description}
       />
     </div>
   )

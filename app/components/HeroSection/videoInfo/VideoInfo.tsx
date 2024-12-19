@@ -11,6 +11,7 @@ interface VideoInfoProps {
   videoId: string
   setActivePopupId: (id: string) => void
   isActivePopup: boolean
+  setPopupState: () => void
 }
 
 const VideoInfo: React.FC<VideoInfoProps> = ({
@@ -22,7 +23,13 @@ const VideoInfo: React.FC<VideoInfoProps> = ({
   uploadDate,
   setActivePopupId,
   isActivePopup,
+  setPopupState,
 }) => {
+  const handleToggleDetails = () => {
+    setActivePopupId(videoId)
+    setPopupState()
+  }
+
   return (
     <div className="py-4 flex gap-4 items-start">
       <Image
@@ -49,13 +56,12 @@ const VideoInfo: React.FC<VideoInfoProps> = ({
         </div>
       </div>
       <EllipsisVertical
-        size={35}
-        className={`cursor-pointer transition-all duration-300 rounded-full ${
+        size={30}
+        className={`cursor-pointer  transition rounded-full ${
           isActivePopup ? "bg-gray-300" : "bg-transparent"
-        } p-2`}
-        onClick={() => {
-          setActivePopupId(isActivePopup ? "" : videoId)
-        }}
+        } p-1`}
+        cursor={'pointer'}
+        onClick={handleToggleDetails}
       />
     </div>
   )
