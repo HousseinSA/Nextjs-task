@@ -18,8 +18,8 @@ export default function RootLayout({
       <body className={`overflow-y-auto`}>
         <ReduxWrapper>
           <Header />
-        </ReduxWrapper>
         {children}
+        </ReduxWrapper>
       </body>
     </html>
   )

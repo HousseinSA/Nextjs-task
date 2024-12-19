@@ -1,10 +1,15 @@
+export interface NavItem {
+  label: string
+  route: string
+}
+
 export interface LanguageContent {
-  navItems: Record<string, string>
+  navItems: Record<string, NavItem>
 }
 
 export interface Language {
   code: string
-  name:string
+  name: string
   flagSrc: string
   content: LanguageContent
 }
@@ -16,9 +21,9 @@ export const languages: Language[] = [
     flagSrc: "/french.webp",
     content: {
       navItems: {
-        Accueil: "الرئيسية",
-        Contacte: "اتصل",
-        "À propos": "حول",
+        Accueil: { label: "الرئيسية", route: "/" },
+        Contacte: { label: "اتصل", route: "/contact" },
+        "À propos": { label: "حول", route: "/about" },
       },
     },
   },
@@ -28,9 +33,9 @@ export const languages: Language[] = [
     flagSrc: "/arabic.webp",
     content: {
       navItems: {
-        حول: "À propos",
-        اتصل: "Contacte",
-        الرئيسية: "Accueil",
+        حول: { label: "À propos", route: "/about" },
+        اتصل: { label: "Contacte", route: "/contact" },
+        الرئيسية: { label: "Accueil", route: "/" },
       },
     },
   },

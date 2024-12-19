@@ -11,15 +11,13 @@ type LangSwitcherProps = {
 const LangSwitcher: React.FC<LangSwitcherProps> = ({
   language,
   toggleLanguage,
-  mobileState,
 }) => {
   const currentLanguage = languages.find((lang) => lang.code === language)
 
   return (
     <div
-      className={` ${
-        mobileState ? "flex" : "hidden md:flex  "
-      } relative cursor-pointer`}
+      className={`
+       relative cursor-pointer hidden md:flex`}
     >
       <div className="flex gap-1.5 items-center " onClick={toggleLanguage}>
         {currentLanguage && (

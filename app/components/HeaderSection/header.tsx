@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { setLanguage, setActiveLink } from "@lib/redux/stateSlice"
 import { languages } from "@lib/languages"
 import { AlignJustify, X } from "lucide-react"
-import MobileNavMenu from "./navigation/MobileNavMenu"
 
 interface StatesProps {
   language: string
@@ -57,18 +56,8 @@ const Header: React.FC = () => {
         )}
       </button>
       <Logo />
-      <div
-        className={`hidden md:flex flex-1 justify-center items-center gap-3`}
-      >
         <NavMenu activeLink={activeLink}   mobileState={mobileState} language={language} />
-        <LangSwitcher language={language}   mobileState={mobileState} toggleLanguage={toggleLanguage} />
-      </div>
-      <MobileNavMenu
-        mobileState={mobileState}
-        activeLink={activeLink}
-        language={language}
-        toggleLanguage={toggleLanguage}
-      />
+        <LangSwitcher language={language}    toggleLanguage={toggleLanguage} />
     </div>
   )
 }
