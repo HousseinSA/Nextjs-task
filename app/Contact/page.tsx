@@ -9,31 +9,28 @@ interface StatesProps {
 }
 
 const Page = () => {
-  const pathname = usePathname() // Get the current pathname
+  const pathname = usePathname()
   const language = useSelector((state: StatesProps) => state.language)
 
-  // Find the current language object
   const currentLanguage = languages.find((lang) => lang.code !== language)
 
-  // Function to get label by pathname
   const getLabelByPathname = (pathname: string) => {
     if (!currentLanguage) return null
 
     const navItems = currentLanguage.content.navItems
     for (const key in navItems) {
       if (navItems[key].route === pathname) {
-        return navItems[key].label // Return the label for the matching route
+        return navItems[key].label
       }
     }
-    return null // Return null if no match is found
+    return null
   }
 
   const label = getLabelByPathname(pathname)
 
   return (
     <div>
-      <h1>{label || "Page not found"}</h1>
-      {/* Additional content can be added here */}
+      <h1 className="mt-2 text-center text-lg">{label}</h1>
     </div>
   )
 }

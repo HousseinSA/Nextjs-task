@@ -39,7 +39,6 @@ const HeroSection = () => {
   }, [])
 
   if (!videoData) return null
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 p-3 md:p-8 mt-6">
       {videoData.map((video) => (

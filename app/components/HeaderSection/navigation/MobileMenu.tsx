@@ -1,51 +1,44 @@
-"use client"
-import React, { useState } from "react"
+import React from "react"
 import { useDispatch } from "react-redux"
-import NavLink from "./navLink"
 import { setActiveLink } from "@lib/redux/stateSlice"
+import LangSwitcher from "@components/HeaderSection/langSwitcher"
 import { languages } from "@lib/languages"
+import NavLink from "./navLink"
 
-const MobileNavMenu: React.FC<{ activeLink: string; language: string }> = ({
-  activeLink,
-  language,
-}) => {
+const MobileMenu: React.FC<{
+  activeLink: string
+  language: string
+  toggleLanguage: () => void
+}> = ({ activeLink, language, toggleLanguage }) => {
   const dispatch = useDispatch()
   const currentLanguage = languages.find((lang) => lang.code === language)
   const navItems = currentLanguage?.content.navItems || {}
 
-  const [isOpen, setIsOpen] = useState(false)
-
-  const handleLinkClick = (link: string) => {
-    dispatch(setActiveLink(link))
-    setIsOpen(false) // Close menu on link click
-  }
-
   return (
-    <div className="relative md:hidden">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="p-2 bg-blue-500 text-white rounded"
-      >
-        {isOpen ? "Close Menu" : "Open Menu"}
-      </button>
-      <ul
-        className={`absolute top-12 left-0 w-full bg-white shadow-lg transition-transform duration-300 transform ${
-          isOpen ? "translate-y-0" : "-translate-y-full"
-        }`}
-      >
-        {Object.keys(navItems).map((navLink, index) => (
-          <li key={index} className="border-b border-gray-200">
+    <div className="absolute top-16 md:hidden left-0 w-full h-auto p-8 bg-headerBg text-textColor flex flex-col items-center justify-center z-40">
+      <ul className="flex flex-col items-center gap-4">
+        {Object.keys(navItems).map((navLink, index) => {
+          const { route } = navItems[navLink]
+          return (
             <NavLink
+              key={index}
               menu={navLink}
+              route={route}
               isActive={activeLink === navLink}
-              onClick={() => handleLinkClick(navLink)}
-              className="block p-4 text-gray-700 hover:bg-gray-100"
+              onClick={() => dispatch(setActiveLink(navLink))}
             />
-          </li>
-        ))}
+          )
+        })}
+        <div className="mt-6">
+          <LangSwitcher
+            language={language}
+            toggleLanguage={toggleLanguage}
+            mobileState={true}
+          />
+        </div>
       </ul>
     </div>
   )
 }
 
-export default MobileNavMenu
+export default MobileMenu
