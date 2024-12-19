@@ -12,7 +12,7 @@ const HeroSection = () => {
   useEffect(() => {
     const getVideoData = async () => {
       try {
-        const response = await axios.get(`/api/youtube?`)
+        const response = await axios.get(`/api/youtube?`,)
         const randomVideos = response.data.data
         const filteredDetails = randomVideos.map((video: VideoDetails) => ({
           id: video.id,

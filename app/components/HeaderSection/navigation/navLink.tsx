@@ -6,13 +6,25 @@ type NavLinkProps = {
   route: string
   isActive: boolean
   onClick: () => void
+  closeMenu: () => void
 }
 
-const NavLink = ({ menu, route, isActive, onClick }: NavLinkProps) => {
+const NavLink: React.FC<NavLinkProps> = ({
+  menu,
+  route,
+  isActive,
+  onClick,
+  closeMenu,
+}) => {
   const baseClasses = "border-b-2 py-[5px] px-[20px] cursor-pointer"
   const activeClasses = "bg-bgColor text-textColor rounded border-none"
   const inactiveClasses =
     "text-white border-transparent hover:border-gray-700 hover:text-gray-300"
+
+  const handelClick = () => {
+    onClick()
+    closeMenu()
+  }
 
   return (
     <Link href={route}>
@@ -20,7 +32,7 @@ const NavLink = ({ menu, route, isActive, onClick }: NavLinkProps) => {
         className={`${baseClasses} ${
           isActive ? activeClasses : inactiveClasses
         }`}
-        onClick={onClick}
+        onClick={handelClick}
       >
         {menu}
       </li>

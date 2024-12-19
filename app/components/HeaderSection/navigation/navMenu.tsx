@@ -3,7 +3,7 @@ import React from "react"
 import { useDispatch } from "react-redux"
 import NavLink from "./navLink"
 import { setActiveLink } from "@lib/redux/stateSlice"
-import { languages } from "@lib/languages"
+import { languages } from "@/app/lib/types/languages/languages"
 
 const NavMenu: React.FC<{ activeLink: string; language: string }> = ({
   activeLink,
@@ -11,18 +11,18 @@ const NavMenu: React.FC<{ activeLink: string; language: string }> = ({
 }) => {
   const dispatch = useDispatch()
   const currentLanguage = languages.find((lang) => lang.code === language)
+  const navItems = currentLanguage?.content.navItems || {}
 
   const handleLinkClick = (link: string) => {
     dispatch(setActiveLink(link))
   }
 
-  const navItems = currentLanguage?.content.navItems || {}
-
   return (
     <ul className="flex-1 hidden md:flex justify-center items-center gap-3">
-      {Object.keys(navItems).map((navLink, index) => (
+      {Object.keys(navItems).map((navLink) => (
+        // @ts-expect-error fix
         <NavLink
-          key={index}
+          key={navLink}
           menu={navLink}
           route={navItems[navLink].route}
           isActive={activeLink === navLink}

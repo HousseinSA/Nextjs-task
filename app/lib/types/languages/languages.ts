@@ -22,7 +22,7 @@ export const languages: Language[] = [
     content: {
       navItems: {
         Accueil: { label: "الرئيسية", route: "/" },
-        Contact: { label: "اتصل", route: "/contact" },
+        Contacte: { label: "اتصل", route: "/contact" },
         "À propos": { label: "حول", route: "/about" },
       },
     },

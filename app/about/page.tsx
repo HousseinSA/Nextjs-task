@@ -1,8 +1,8 @@
 "use client"
 import React from "react"
 import { useSelector } from "react-redux"
-import { languages } from "@lib/languages"
 import { usePathname } from "next/navigation"
+import { getLabelByPathname } from "@lib/types/languages/getLabelByPathname"
 
 interface StatesProps {
   language: string
@@ -11,22 +11,7 @@ interface StatesProps {
 const Page = () => {
   const pathname = usePathname()
   const language = useSelector((state: StatesProps) => state.language)
-
-  const currentLanguage = languages.find((lang) => lang.code !== language)
-
-  const getLabelByPathname = (pathname: string) => {
-    if (!currentLanguage) return null
-
-    const navItems = currentLanguage.content.navItems
-    for (const key in navItems) {
-      if (navItems[key].route === pathname) {
-        return navItems[key].label
-      }
-    }
-    return null
-  }
-
-  const label = getLabelByPathname(pathname)
+  const label = getLabelByPathname(pathname, language)
 
   return (
     <div>

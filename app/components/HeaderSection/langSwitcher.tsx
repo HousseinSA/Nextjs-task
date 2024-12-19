@@ -1,6 +1,6 @@
 import React from "react"
 import Image from "next/image"
-import { languages } from "@lib/languages"
+import { languages } from "@/app/lib/types/languages/languages"
 
 type LangSwitcherProps = {
   language: string
@@ -16,7 +16,9 @@ const LangSwitcher: React.FC<LangSwitcherProps> = ({
   const currentLanguage = languages.find((lang) => lang.code === language)
 
   return (
-    <div className={`relative cursor-pointer ${mobileState ? "text-xl mt-4" : ""}`}>
+    <div
+      className={`relative cursor-pointer ${mobileState ? "text-xl mt-4" : ""}`}
+    >
       <div className="flex gap-1.5 items-center" onClick={toggleLanguage}>
         {currentLanguage && (
           <>

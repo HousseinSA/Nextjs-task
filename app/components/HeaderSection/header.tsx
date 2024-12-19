@@ -5,42 +5,31 @@ import NavMenu from "@components/HeaderSection/navigation/navMenu"
 import Logo from "./logo"
 import { useDispatch, useSelector } from "react-redux"
 import { setLanguage, setActiveLink } from "@lib/redux/stateSlice"
-import { languages } from "@lib/languages"
+import { languages } from "@/app/lib/types/languages/languages"
 import { AlignJustify, X } from "lucide-react"
 import { usePathname } from "next/navigation"
 import MobileMenu from "./navigation/MobileMenu"
 
-interface StatesProps {
+interface RootState {
   language: string
   activeLink: string
 }
 
 const Header: React.FC = () => {
   const dispatch = useDispatch()
-  const { language, activeLink } = useSelector((state: StatesProps) => ({
-    language: state.language,
-    activeLink: state.activeLink,
-  }))
-
+  const language = useSelector((state: RootState) => state.language)
+  const activeLink = useSelector((state: RootState) => state.activeLink)
   const pathname = usePathname()
   const [mobileState, setMobileState] = useState(false)
 
   useEffect(() => {
     const currentLanguage = languages.find((lang) => lang.code === language)
-    const currentPath = pathname
+    const navItems = currentLanguage?.content.navItems || {}
+    const matchingNavLink = Object.keys(navItems).find(
+      (navLink) => navItems[navLink].route === pathname
+    )
 
-    const matchingNavLink = Object.keys(
-      currentLanguage?.content.navItems || {}
-    ).find((navLink) => {
-      return currentLanguage?.content.navItems[navLink].route === currentPath
-    })
-
-    if (matchingNavLink) {
-      dispatch(setActiveLink(matchingNavLink))
-    } else {
-      const firstLink = Object.keys(currentLanguage?.content.navItems || {})[0]
-      dispatch(setActiveLink(firstLink))
-    }
+    dispatch(setActiveLink(matchingNavLink || Object.keys(navItems)[0]))
   }, [language, pathname, dispatch])
 
   const toggleLanguage = () => {
@@ -72,21 +61,20 @@ const Header: React.FC = () => {
       </button>
       <Logo />
       <div
-        className={`hidden md:flex   ${
+        className={`hidden md:flex ${
           language === "ar" ? "flex-row-reverse" : "flex-row"
         } flex-1 justify-center items-center gap-3`}
       >
         <NavMenu activeLink={activeLink} language={language} />
-        <div>
-          <LangSwitcher
-            language={language}
-            toggleLanguage={toggleLanguage}
-            mobileState={mobileState}
-          />
-        </div>
+        <LangSwitcher
+          language={language}
+          toggleLanguage={toggleLanguage}
+          mobileState={mobileState}
+        />
       </div>
       {mobileState && (
         <MobileMenu
+          closeMenu={() => setMobileState((prev) => !prev)}
           activeLink={activeLink}
           language={language}
           toggleLanguage={toggleLanguage}
