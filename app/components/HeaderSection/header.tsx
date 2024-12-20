@@ -1,14 +1,14 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import LangSwitcher from "@components/HeaderSection/langSwitcher"
-import NavMenu from "@components/HeaderSection/navigation/navMenu"
+import LangSwitcher from "@/app/components/HeaderSection/Navigation/langSwitcher"
+import NavMenu from "@/app/components/HeaderSection/Navigation/NavMenuList/navMenu"
 import Logo from "./logo"
 import { useDispatch, useSelector } from "react-redux"
 import { setLanguage, setActiveLink } from "@lib/redux/stateSlice"
 import { languages } from "@/app/lib/types/languages/languages"
 import { AlignJustify, X } from "lucide-react"
 import { usePathname } from "next/navigation"
-import MobileMenu from "./navigation/MobileMenu"
+import MobileMenu from "./Navigation/NavMenuList/MobileMenu"
 
 interface RootState {
   language: string
@@ -76,6 +76,7 @@ const Header: React.FC = () => {
         <MobileMenu
           closeMenu={() => setMobileState((prev) => !prev)}
           activeLink={activeLink}
+          mobileState={mobileState}
           language={language}
           toggleLanguage={toggleLanguage}
         />

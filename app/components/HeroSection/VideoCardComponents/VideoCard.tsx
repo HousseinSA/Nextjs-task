@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react"
 import { VideoDetails } from "@lib/types/videData"
-import Thumbnail from "./Thumbnail"
 import VideoInfo from "./videoInfo/VideoInfo"
 import DetailsPopup from "./videoInfo/DetailsPopup"
+import Thumbnail from "./Thumbnail"
 
 interface videoCardProps {
   key: string
@@ -34,6 +34,7 @@ const VideoCard: React.FC<videoCardProps> = ({
     commentCount,
     category,
   } = videoData
+
   // @ts-expect-error fix
   const channel = channelThumbnail[0]?.url
   const popupRef = useRef<HTMLDivElement>(null)
@@ -50,13 +51,9 @@ const VideoCard: React.FC<videoCardProps> = ({
       }
     }
 
-    const timeout = setTimeout(
-      () => document.addEventListener("mousedown", handleClickOutside),
-      300
-    )
+    document.addEventListener("mousedown", handleClickOutside)
 
     return () => {
-      clearTimeout(timeout)
       document.removeEventListener("mousedown", handleClickOutside)
     }
   }, [setActivePopupId])

@@ -1,7 +1,7 @@
 "use client"
 import React from "react"
-import { useDispatch } from "react-redux"
 import NavLink from "./navLink"
+import { useDispatch } from "react-redux"
 import { setActiveLink } from "@lib/redux/stateSlice"
 import { languages } from "@/app/lib/types/languages/languages"
 

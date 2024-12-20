@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
-*,:after,:before  {
+*,
+:after,
+:before {
   font-size: 14px;
   cursor: default;
-  user-select: none!important;
 }

@@ -41,12 +41,12 @@ const VideoInfo: React.FC<VideoInfoProps> = ({
       />
       <div className="flex-1">
         <h3 className="text-[16px] font-semibold text-gray-800 leading-tight">
-          {ShorterString(title, 15)}
+          {ShorterString(title, 10)}
         </h3>
         <div className="mt-2">
           <div className="flex items-center gap-1">
             <span className="text-base text-gray-500">{channelTitle}</span>
-            <Check size={15} className="rounded-full p-1 bg-gray-300" />
+            <Check size={15}  className="rounded-full p-1 bg-gray-400" />
           </div>
           <p className="text-base text-gray-500">
             {formatNumber(viewCount)} views
@@ -60,7 +60,7 @@ const VideoInfo: React.FC<VideoInfoProps> = ({
         className={`cursor-pointer  transition rounded-full ${
           isActivePopup ? "bg-gray-300" : "bg-transparent"
         } p-1`}
-        cursor={'pointer'}
+        cursor={"pointer"}
         onClick={handleToggleDetails}
       />
     </div>
