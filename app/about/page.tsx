@@ -12,10 +12,11 @@ const Page = () => {
   const pathname = usePathname()
   const language = useSelector((state: StatesProps) => state.language)
   const label = getLabelByPathname(pathname, language)
+  const titlePosition = language == "ar" ? "text-right " : "text-left"
 
   return (
     <div>
-      <h1 className="mt-2 text-center text-lg">{label}</h1>
+      <h1 className={`mt-6 text-4xl px-2 ${titlePosition}`}>{label}</h1>
     </div>
   )
 }

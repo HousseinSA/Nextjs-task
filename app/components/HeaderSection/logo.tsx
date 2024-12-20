@@ -4,9 +4,9 @@ import Link from "next/link"
 
 const Logo = () => {
   return (
-    <Link href={"/"} className=" w-[100px] md:w-[150px] pointer-events-none">
+    <Link href={"/"} className=" w-[100px] min-w-[50px] md:w-[150px]  ">
       <Image
-        className="md:w-40"
+        className=" cursor-pointer"
         width={200}
         height={200}
         alt="techno-trans logo"

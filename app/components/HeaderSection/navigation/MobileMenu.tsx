@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { setActiveLink } from "@lib/redux/stateSlice"
 import LangSwitcher from "@components/HeaderSection/langSwitcher"
@@ -23,19 +23,36 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   const navItems = currentLanguage?.content.navItems || {}
   const menuArrangementState =
     language === "ar" ? "flex flex-col-reverse" : "flex flex-col"
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        closeMenu()
+      }
+    }
+
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [closeMenu])
+
+  const handleLinkClick = (navLink: string) => {
+    dispatch(setActiveLink(navLink))
+    closeMenu()
+  }
+
   return (
     <div className="absolute top-16 md:hidden left-0 w-full h-auto p-8 bg-headerBg text-textColor flex flex-col items-center justify-center z-40">
-      <ul className={` ${menuArrangementState} items-center gap-4`}>
-        {Object.keys(navItems).map((navLink, index) => {
+      <ul className={`${menuArrangementState} items-center gap-4`}>
+        {Object.keys(navItems).map((navLink) => {
           const { route } = navItems[navLink]
           return (
+            // @ts-expect-error fix
             <NavLink
-              key={index}
+              key={navLink}
               menu={navLink}
-              closeMenu={closeMenu}
               route={route}
               isActive={activeLink === navLink}
-              onClick={() => dispatch(setActiveLink(navLink))}
+              onClick={() => handleLinkClick(navLink)} // Close menu on link click
             />
           )
         })}
