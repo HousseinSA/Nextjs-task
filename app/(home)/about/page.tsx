@@ -3,14 +3,11 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { usePathname } from "next/navigation"
 import { getLabelByPathname } from "@lib/types/languages/getLabelByPathname"
-
-interface StatesProps {
-  language: string
-}
+import { RootState } from "@lib/types/ReduxTypes/HeaderTypes"
 
 const Page = () => {
   const pathname = usePathname()
-  const language = useSelector((state: StatesProps) => state.language)
+  const language = useSelector((state: RootState) => state.header.language)
   const label = getLabelByPathname(pathname, language)
   const titlePosition = language == "ar" ? "text-right " : "text-left"
 

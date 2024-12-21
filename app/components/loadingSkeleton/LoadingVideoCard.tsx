@@ -7,12 +7,6 @@ const LoadingVideoCard = () => {
           <div className="h-[198px] bg-gray-300 animate-pulse"></div>
 
           {/* Overlay for private/public indicator */}
-          <div className="absolute top-2 right-2 flex  items-center">
-            <div className="flex items-center z-40 gap-2">
-              <span className="bg-gray-400 h-4 w-20 rounded-md ml-2 animate-pulse"></span>
-              <div className="bg-gray-400 h-5 w-5 rounded-full animate-pulse"></div>
-            </div>
-          </div>
 
           {/* Video Info Skeleton */}
           <div className="p-4">

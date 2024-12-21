@@ -36,7 +36,6 @@ export const useVideoData = () => {
         console.error("Failed to fetch video data:", error)
       }
     }
-
     getVideoData()
   }, [])
 

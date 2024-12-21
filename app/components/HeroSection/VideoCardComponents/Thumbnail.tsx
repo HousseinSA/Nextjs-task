@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import React, { useState } from "react"
 import { Lock, Unlock } from "lucide-react"
-import { formatVideoLength } from "@lib/FormattingFunctions"
+import { formatVideoLength } from "@/app/lib/functions/FormattingFunctions"
 
 const Thumbnail: React.FC<{
   thumbnail: string

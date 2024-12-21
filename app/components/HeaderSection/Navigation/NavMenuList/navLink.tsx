@@ -6,7 +6,6 @@ type NavLinkProps = {
   route: string
   isActive: boolean
   onClick: () => void
-  closeMenu: () => void
 }
 
 const NavLink: React.FC<NavLinkProps> = ({
@@ -14,7 +13,6 @@ const NavLink: React.FC<NavLinkProps> = ({
   route,
   isActive,
   onClick,
-  closeMenu,
 }) => {
   const baseClasses = "border-b-2 py-[5px] px-[20px] cursor-pointer"
   const activeClasses = "bg-bgColor text-textColor rounded border-none"
@@ -23,7 +21,6 @@ const NavLink: React.FC<NavLinkProps> = ({
 
   const handelClick = () => {
     onClick()
-    closeMenu()
   }
 
   return (
