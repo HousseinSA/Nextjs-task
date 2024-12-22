@@ -1,17 +1,23 @@
 "use client"
 import axios from "axios"
-import { useEffect, useState } from "react"
-
-import { VideoDetails } from "@lib/types/videData"
+import { useEffect } from "react"
+import { VideoDetails, RootState } from "@lib/types/HeroSectionTypes"
+import {
+  setActivePopupId,
+  togglePopupState,
+  setVideoData,
+  setVideoLoadingState,
+} from "@lib/redux/HeroSlice"
+import { useDispatch, useSelector } from "react-redux"
 
 export const useVideoData = () => {
-  const [videoData, setVideoData] = useState<VideoDetails[]>([])
-  const [videoLoadingState, setVideoLoadingState] = useState<boolean>(false)
-
+  const { videoData, videoLoadingState, activePopupId, popUpState } =
+    useSelector((state: RootState) => state.hero)
+  const dispatch = useDispatch()
   useEffect(() => {
     const getVideoData = async () => {
       try {
-        setVideoLoadingState(true)
+        dispatch(setVideoLoadingState(true))
         const response = await axios.get(`/api/youtube?`)
         const randomVideos = response.data.data
         const filteredDetails = randomVideos.map((video: VideoDetails) => ({
@@ -29,15 +35,35 @@ export const useVideoData = () => {
           commentCount: video.commentCount,
           description: video.description,
         }))
-        setVideoData(filteredDetails)
-        setVideoLoadingState(false)
+        dispatch(setVideoData(filteredDetails))
+        dispatch(setVideoLoadingState(false))
       } catch (error) {
-        setVideoLoadingState(false)
+        dispatch(setVideoLoadingState(false))
         console.error("Failed to fetch video data:", error)
       }
     }
     getVideoData()
-  }, [])
+  }, [dispatch])
 
-  return { videoData, videoLoadingState }
+  const handlePopUpState = () => {
+    dispatch(togglePopupState())
+  }
+  const handleActivePopUpId = (id: string | null) => {
+    dispatch(setActivePopupId(id))
+  }
+
+  const handleToggleDetails = (id: string | null) => {
+    handleActivePopUpId(id)
+    handlePopUpState()
+  }
+
+  return {
+    videoData,
+    videoLoadingState,
+    popUpState,
+    activePopupId,
+    handlePopUpState,
+    handleActivePopUpId,
+    handleToggleDetails,
+  }
 }

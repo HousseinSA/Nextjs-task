@@ -6,6 +6,7 @@ import {
   timeAgo,
 } from "@/app/lib/functions/FormattingFunctions"
 import { Check, EllipsisVertical } from "lucide-react"
+import { useVideoData } from "@hooks/useVideoData"
 interface VideoInfoProps {
   channel: string
   title: string
@@ -13,9 +14,7 @@ interface VideoInfoProps {
   channelTitle: string
   uploadDate: string
   videoId: string
-  setActivePopupId: (id: string) => void
   isActivePopup: boolean
-  setPopupState: () => void
 }
 
 const VideoInfo: React.FC<VideoInfoProps> = ({
@@ -25,14 +24,9 @@ const VideoInfo: React.FC<VideoInfoProps> = ({
   title,
   channelTitle,
   uploadDate,
-  setActivePopupId,
   isActivePopup,
-  setPopupState,
 }) => {
-  const handleToggleDetails = () => {
-    setActivePopupId(videoId)
-    setPopupState()
-  }
+  const { handleToggleDetails } = useVideoData()
 
   return (
     <div className="py-4 flex gap-4 items-start">
@@ -65,7 +59,7 @@ const VideoInfo: React.FC<VideoInfoProps> = ({
           isActivePopup ? "bg-gray-300" : "bg-transparent"
         } p-1`}
         cursor={"pointer"}
-        onClick={handleToggleDetails}
+        onClick={()=>handleToggleDetails(videoId)}
       />
     </div>
   )

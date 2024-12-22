@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setActiveLink, setMobileState } from "@/app/lib/redux/headerSlice"
-import { RootState } from "@lib/types/ReduxTypes/HeaderTypes"
+import { RootState } from "@lib/types/HeaderTypes"
 import gsap from "gsap"
 
 export const useMobileMenuAnimation = (
@@ -59,4 +59,3 @@ export const useMobileMenuAnimation = (
 
   return handleLinkClick
 }
-

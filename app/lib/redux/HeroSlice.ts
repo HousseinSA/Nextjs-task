@@ -1,19 +1,11 @@
-// heroSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { VideoDetails } from "@lib/types/videData"
+import { VideoDetails, HeroState } from "@lib/types/HeroSectionTypes"
 
-interface HeroSlice {
-  activePopupId: string | null
-  popUpState: boolean
-  videoData: VideoDetails[]
-  videoLoadingState: boolean
-}
-
-const initialState: HeroSlice = {
+const initialState: HeroState = {
   activePopupId: null,
   popUpState: false,
   videoData: [],
-  videoLoadingState: true, // Set to true initially while data is being fetched
+  videoLoadingState: false,
 }
 
 const heroSlice = createSlice({

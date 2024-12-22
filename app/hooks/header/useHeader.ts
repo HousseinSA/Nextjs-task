@@ -6,7 +6,7 @@ import {
 import { languages } from "@/app/lib/types/languages/languages"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { RootState } from "@lib/types/ReduxTypes/HeaderTypes"
+import { RootState } from "@lib/types/HeaderTypes"
 
 import { usePathname } from "next/navigation"
 

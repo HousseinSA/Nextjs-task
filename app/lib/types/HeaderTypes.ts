@@ -8,4 +8,3 @@ export interface HeaderState {
 export interface RootState {
   header: HeaderState
 }
-

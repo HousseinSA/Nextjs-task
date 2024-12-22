@@ -1,25 +1,15 @@
 import React, { useRef, useEffect } from "react"
-import { VideoDetails } from "@lib/types/videData"
+import { VideoDetails } from "@lib/types/HeroSectionTypes"
 import VideoInfo from "./videoInfo/VideoInfo"
 import DetailsPopup from "./videoInfo/DetailsPopup"
 import Thumbnail from "./Thumbnail"
+import { useVideoData } from "@hooks/useVideoData"
 
 interface videoCardProps {
-  key: string
   videoData: VideoDetails
-  activePopupId: string | null
-  setActivePopupId: (id: string | null) => void
-  popUpState: boolean
-  setPopupState: () => void
 }
 
-const VideoCard: React.FC<videoCardProps> = ({
-  videoData,
-  setActivePopupId,
-  activePopupId,
-  setPopupState,
-  popUpState,
-}) => {
+const VideoCard: React.FC<videoCardProps> = ({ videoData }) => {
   const {
     thumbnail,
     title,
@@ -35,6 +25,8 @@ const VideoCard: React.FC<videoCardProps> = ({
     category,
   } = videoData
 
+  const { activePopupId, popUpState, handleActivePopUpId } = useVideoData()
+
   // @ts-expect-error fix
   const channel = channelThumbnail[0]?.url
   const popupRef = useRef<HTMLDivElement>(null)
@@ -47,7 +39,7 @@ const VideoCard: React.FC<videoCardProps> = ({
         popupRef.current &&
         !popupRef.current.contains(event.target as Node)
       ) {
-        setActivePopupId(null)
+        handleActivePopUpId(null)
       }
     }
 
@@ -56,7 +48,7 @@ const VideoCard: React.FC<videoCardProps> = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
     }
-  }, [setActivePopupId])
+  }, [handleActivePopUpId])
 
   return (
     <div className="w-full overflow-hidden relative">
@@ -79,8 +71,6 @@ const VideoCard: React.FC<videoCardProps> = ({
         videoId={id}
         channel={channel}
         isActivePopup={isActivePopup}
-        setActivePopupId={setActivePopupId}
-        setPopupState={setPopupState}
         title={title}
         viewCount={viewCount}
         channelTitle={channelTitle}
