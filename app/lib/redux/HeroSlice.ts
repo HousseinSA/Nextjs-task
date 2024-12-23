@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { VideoDetails, HeroState } from "@lib/types/HeroSectionTypes"
+import { VideoDetails, HeroState } from "@/app/lib/types/HerosectionTypes"
 
 const initialState: HeroState = {
   activePopupId: null,

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react"
-import { VideoDetails } from "@lib/types/HeroSectionTypes"
+import { VideoDetails } from "@/app/lib/types/HerosectionTypes"
 import VideoInfo from "./videoInfo/VideoInfo"
 import DetailsPopup from "./videoInfo/DetailsPopup"
 import Thumbnail from "./Thumbnail"

@@ -1,7 +1,7 @@
 "use client"
 import axios from "axios"
 import { useEffect } from "react"
-import { VideoDetails, RootState } from "@lib/types/HeroSectionTypes"
+import { VideoDetails, RootState } from "@/app/lib/types/HerosectionTypes"
 import {
   setActivePopupId,
   togglePopupState,

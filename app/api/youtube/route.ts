@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ApiResponse } from "@lib/types/videData"
+import { ApiResponse } from "@/app/lib/types/HerosectionTypes"
 const fetchFromApi = async (endPoint: string, videoId: string) => {
   const baseUrl = `https://yt-api.p.rapidapi.com/${endPoint}`
   const url =
