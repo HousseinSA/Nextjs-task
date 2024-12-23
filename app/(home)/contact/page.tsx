@@ -3,7 +3,7 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { usePathname } from "next/navigation"
 import { getLabelByPathname } from "@lib/types/languages/getLabelByPathname"
-import { RootState } from "@lib/types/ReduxTypes/HeaderTypes"
+import { RootState } from "@lib/types/HeaderTypes"
 
 const Page = () => {
   const pathname = usePathname()
