@@ -43,7 +43,7 @@ export interface VideoInfoProps {
 }
 
 export interface ThumbnailProps {
-  thumbnail: string
+  thumbnail: Thumbnail
   videoId: string
   isPrivate: boolean
   lengthSeconds: number
