@@ -1,3 +1,4 @@
+"use client"
 import { useSelector } from "react-redux"
 import { usePathname } from "next/navigation"
 import { RootState } from "@lib/types/HeaderTypes"
