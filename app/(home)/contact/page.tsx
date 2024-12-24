@@ -1,15 +1,9 @@
 "use client"
 import React from "react"
-import { useSelector } from "react-redux"
-import { usePathname } from "next/navigation"
-import { getLabelByPathname } from "@lib/types/languages/getLabelByPathname"
-import { RootState } from "@lib/types/HeaderTypes"
+import { usePageLabel } from "@hooks/usePageLabel"
 
 const Page = () => {
-  const pathname = usePathname()
-  const language = useSelector((state: RootState) => state.header.language)
-  const label = getLabelByPathname(pathname, language)
-  const titlePosition = language == "ar" ? "text-right " : "text-left"
+  const { label, titlePosition } = usePageLabel()
 
   return (
     <div>

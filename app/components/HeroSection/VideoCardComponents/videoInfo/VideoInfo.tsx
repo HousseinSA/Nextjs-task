@@ -1,35 +1,26 @@
 import React from "react"
 import Image from "next/image"
-import { formatNumber, ShorterString, timeAgo } from "@/app/lib/functions/FormattingFunctions"
+import {
+  formatNumber,
+  ShorterString,
+  timeAgo,
+} from "@/app/lib/functions/FormattingFunctions"
 import { Check, EllipsisVertical } from "lucide-react"
-interface VideoInfoProps {
-  channel: string
-  title: string
-  viewCount: number
-  channelTitle: string
-  uploadDate: string
-  videoId: string
-  setActivePopupId: (id: string) => void
-  isActivePopup: boolean
-  setPopupState: () => void
-}
+import { VideoInfoProps } from "@lib/types/HeroSectionTypes"
 
 const VideoInfo: React.FC<VideoInfoProps> = ({
-  channel,
-  viewCount,
   videoId,
-  title,
-  channelTitle,
-  uploadDate,
   setActivePopupId,
   isActivePopup,
-  setPopupState,
+  handlePopUpState,
+  videoInfoValues,
 }) => {
   const handleToggleDetails = () => {
     setActivePopupId(videoId)
-    setPopupState()
+    handlePopUpState()
   }
-
+  const { channel, title, viewCount, channelTitle, uploadDate } =
+    videoInfoValues
   return (
     <div className="py-4 flex gap-4 items-start">
       <Image
@@ -46,7 +37,7 @@ const VideoInfo: React.FC<VideoInfoProps> = ({
         <div className="mt-2">
           <div className="flex items-center gap-1">
             <span className="text-base text-gray-500">{channelTitle}</span>
-            <Check size={15}  className="rounded-full p-1 bg-gray-400" />
+            <Check size={15} className="rounded-full p-1 bg-gray-400" />
           </div>
           <p className="text-base text-gray-500">
             {formatNumber(viewCount)} views

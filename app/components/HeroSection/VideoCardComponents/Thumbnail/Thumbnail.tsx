@@ -1,19 +1,23 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
-import React, { useState } from "react"
+import React from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { Lock, Unlock } from "lucide-react"
 import { formatVideoLength } from "@/app/lib/functions/FormattingFunctions"
+import { RootState, ThumbnailProps } from "@/app/lib/types/HeroSectionTypes"
+import { setHoverState } from "@lib/redux/HeroSlice"
 
-const Thumbnail: React.FC<{
-  thumbnail: string
-  videoId: string
-  isPrivate: boolean
-  lengthSeconds: number
-  children: React.ReactNode
-}> = ({ thumbnail, videoId, isPrivate, lengthSeconds, children }) => {
+const Thumbnail: React.FC<ThumbnailProps> = ({
+  thumbnail,
+  videoId,
+  isPrivate,
+  lengthSeconds,
+  children,
+}) => {
   const videoUrl = `https://www.youtube.com/watch?v=${videoId}`
-  const [isHovered, setIsHovered] = useState(false)
+  const dispatch = useDispatch()
+  const { hoverState } = useSelector((state: RootState) => state.hero)
   return (
     <div className="relative">
       <div className="relative">
@@ -21,7 +25,6 @@ const Thumbnail: React.FC<{
           <Image
             className="w-full h-[198px] object-cover rounded-lg cursor-pointer"
             alt="Thumbnail"
-            // @ts-expect-error correct value
             src={thumbnail.url}
             width={352}
             height={198}
@@ -29,8 +32,8 @@ const Thumbnail: React.FC<{
         </Link>
         <div
           className="absolute top-2 right-2 flex items-center"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          onMouseEnter={() => dispatch(setHoverState(true))}
+          onMouseLeave={() => dispatch(setHoverState(false))}
         >
           <div
             className="flex items-center z-40 "
@@ -51,7 +54,7 @@ const Thumbnail: React.FC<{
               className={` bg-white px-2 py-.5 mr-1 rounded-md text-sm ${
                 isPrivate ? "text-red-500" : "text-green-500"
               } transition-opacity duration-300 ${
-                isHovered ? "opacity-80" : "opacity-0"
+                hoverState ? "opacity-80" : "opacity-0"
               }`}
               style={{
                 position: "absolute",

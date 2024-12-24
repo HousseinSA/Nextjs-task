@@ -12,10 +12,8 @@ import { usePathname } from "next/navigation"
 
 export const useHeader = () => {
   const dispatch = useDispatch()
-  const language = useSelector((state: RootState) => state.header.language)
-  const activeLink = useSelector((state: RootState) => state.header.activeLink)
-  const mobileState = useSelector(
-    (state: RootState) => state.header.mobileState
+  const { language, activeLink, mobileState } = useSelector(
+    (state: RootState) => state.header
   )
   const pathname = usePathname()
 

@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { VideoDetails, HeroState } from "@/app/lib/types/HerosectionTypes"
+import { VideoDetails, HeroState } from "@/app/lib/types/HeroSectionTypes"
 
 const initialState: HeroState = {
   activePopupId: null,
   popUpState: false,
   videoData: [],
   videoLoadingState: false,
+  hoverState: false,
 }
 
 const heroSlice = createSlice({
@@ -24,6 +25,9 @@ const heroSlice = createSlice({
     setVideoLoadingState(state, action: PayloadAction<boolean>) {
       state.videoLoadingState = action.payload
     },
+    setHoverState(state, action: PayloadAction<boolean>) {
+      state.hoverState = action.payload
+    },
   },
 })
 
@@ -32,5 +36,6 @@ export const {
   togglePopupState,
   setVideoData,
   setVideoLoadingState,
+  setHoverState,
 } = heroSlice.actions
 export default heroSlice.reducer

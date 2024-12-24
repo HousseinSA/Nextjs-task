@@ -1,12 +1,11 @@
 import axios from "axios"
-import { ApiResponse } from "@/app/lib/types/HerosectionTypes"
+import { ApiResponse } from "@/app/lib/types/HeroSectionTypes"
 const fetchFromApi = async (endPoint: string, videoId: string) => {
   const baseUrl = `https://yt-api.p.rapidapi.com/${endPoint}`
   const url =
     endPoint === "related"
       ? `${baseUrl}?id=${videoId}`
       : `${baseUrl}?id=${videoId}&extend=2`
-
   try {
     const response = await axios.get(url, {
       headers: {

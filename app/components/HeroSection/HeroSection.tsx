@@ -1,13 +1,14 @@
 "use client"
-import { useState } from "react"
 import VideoCard from "./VideoCardComponents/VideoCard"
 import LoadingVideoCard from "@/app/components/loadingSkeleton/LoadingVideoCard"
-import { useVideoData } from "@hooks/useVideoData"
+import { useVideoData } from "@hooks/heroSection/useVideoData"
 const HeroSection = () => {
-  const [popUpState, setPopupState] = useState<boolean>(false)
-  const { videoData, videoLoadingState, activePopupId, handleActivePopUpId } =
-    useVideoData()
-  console.log("test", activePopupId)
+  const {
+    videoData,
+    videoLoadingState,
+    handleActivePopUpId,
+    handlePopUpState,
+  } = useVideoData()
 
   if (videoLoadingState) {
     return <LoadingVideoCard />
@@ -18,10 +19,8 @@ const HeroSection = () => {
         <VideoCard
           key={video.id}
           videoData={video}
-          activePopupId={activePopupId}
           setActivePopupId={handleActivePopUpId}
-          setPopupState={() => setPopupState((prev) => !prev)}
-          popUpState={popUpState}
+          handlePopUpState={handlePopUpState}
         />
       ))}
     </div>

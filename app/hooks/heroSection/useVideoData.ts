@@ -1,7 +1,11 @@
 "use client"
 import axios from "axios"
 import { useEffect } from "react"
-import { VideoDetails, RootState } from "@/app/lib/types/HerosectionTypes"
+import {
+  VideoData,
+  RootState,
+  videoInfoCompProps,
+} from "@/app/lib/types/HeroSectionTypes"
 import {
   setActivePopupId,
   togglePopupState,
@@ -20,7 +24,7 @@ export const useVideoData = () => {
         dispatch(setVideoLoadingState(true))
         const response = await axios.get(`/api/youtube?`)
         const randomVideos = response.data.data
-        const filteredDetails = randomVideos.map((video: VideoDetails) => ({
+        const filteredDetails = randomVideos.map((video: VideoData) => ({
           id: video.id,
           title: video.title,
           lengthSeconds: video.lengthSeconds,
@@ -66,4 +70,43 @@ export const useVideoData = () => {
     handleActivePopUpId,
     handleToggleDetails,
   }
+}
+
+
+import { RefObject } from "react"
+export const useClickOutside = (
+  ref: RefObject<HTMLElement>,
+  callback: () => void
+) => {
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        callback()
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [ref, callback])
+}
+
+export const useVideoDataValues = (videoData: VideoData) => {
+  const { activePopupId, popUpState } = useSelector(
+    (state: RootState) => state.hero
+  )
+  const videoId = videoData.id
+  const isActivePopup = activePopupId === videoId && popUpState
+
+  const channelImage = videoData.channelThumbnail[0]?.url
+  const videoInfoValues: videoInfoCompProps = {
+    channel: channelImage,
+    title: videoData.title,
+    viewCount: videoData.viewCount,
+    channelTitle: videoData.channelTitle,
+    uploadDate: videoData.uploadDate,
+  }
+
+  return { isActivePopup, videoInfoValues }
 }
