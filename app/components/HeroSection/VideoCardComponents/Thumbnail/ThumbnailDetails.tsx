@@ -10,6 +10,7 @@ const ThumbnailDetails: React.FC<ThumbnailDetailsProps> = ({
 }) => {
   return (
     <Thumbnail
+      // @ts-expect-error fix
       thumbnail={videoData.thumbnail["url"]}
       videoId={videoData.id}
       isPrivate={videoData.isPrivate}
