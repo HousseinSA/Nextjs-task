@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { VideoDetails, HeroState } from "@/app/lib/types/HeroSectionTypes"
+import { VideoData, HeroState } from "@/app/lib/types/HeroSectionTypes"
 
 const initialState: HeroState = {
   activePopupId: null,
@@ -19,7 +19,7 @@ const heroSlice = createSlice({
     togglePopupState(state) {
       state.popUpState = !state.popUpState
     },
-    setVideoData(state, action: PayloadAction<VideoDetails[]>) {
+    setVideoData(state, action: PayloadAction<VideoData[]>) {
       state.videoData = action.payload
     },
     setVideoLoadingState(state, action: PayloadAction<boolean>) {
