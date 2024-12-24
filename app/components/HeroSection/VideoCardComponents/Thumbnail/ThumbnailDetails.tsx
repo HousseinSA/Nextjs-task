@@ -7,7 +7,7 @@ const ThumbnailDetails: React.FC<ThumbnailDetailsProps> = ({
   popupRef,
 }) => (
   <Thumbnail
-    thumbnail={videoData.thumbnail}
+    thumbnail={videoData.thumbnail[0]}
     videoId={videoData.id}
     isPrivate={videoData.isPrivate}
     lengthSeconds={videoData.lengthSeconds}
