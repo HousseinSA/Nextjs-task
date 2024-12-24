@@ -7,7 +7,6 @@ export interface Thumbnail {
 export interface RootState {
   hero: HeroState
 }
-
 export interface HeroState {
   activePopupId: string | null
   popUpState: boolean
