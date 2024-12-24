@@ -1,14 +1,21 @@
 "use client"
-import React, { ReactNode } from "react"
+import React from "react"
 import { Provider } from "react-redux"
-import store from "@lib/redux/store"
+import store, { persistor } from "@/app/lib/redux/store"
+import { PersistGate } from "redux-persist/integration/react"
 
 interface ReduxWrapperProps {
   children?: ReactNode
 }
 
 const ReduxWrapper: React.FC<ReduxWrapperProps> = ({ children }) => {
-  return <Provider store={store}>{children}</Provider>
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        {children}
+      </PersistGate>
+    </Provider>
+  )
 }
 
 export default ReduxWrapper

@@ -18,6 +18,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   const videoUrl = `https://www.youtube.com/watch?v=${videoId}`
   const dispatch = useDispatch()
   const { hoverState } = useSelector((state: RootState) => state.hero)
+  console.log(thumbnail)
   return (
     <div className="relative">
       <div className="relative">
@@ -25,7 +26,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
           <Image
             className="w-full h-[198px] object-cover rounded-lg cursor-pointer"
             alt="Thumbnail"
-            src={thumbnail.url}
+            src={thumbnail?.url}
             width={352}
             height={198}
           />
