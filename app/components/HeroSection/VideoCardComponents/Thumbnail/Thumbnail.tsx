@@ -26,7 +26,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
           <Image
             className="w-full h-[198px] object-cover rounded-lg cursor-pointer"
             alt="Thumbnail"
-            src={thumbnail?.url}
+            src={thumbnail}
             width={352}
             height={198}
           />
