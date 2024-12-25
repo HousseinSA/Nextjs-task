@@ -1,11 +1,10 @@
 import React from "react"
 import Image from "next/image"
-import { languages } from "@/app/lib/types/languages/languages"
+import {
+  languages,
+  LangSwitcherProps,
+} from "@/app/lib/types/languages/languages"
 import { useHeaderValues } from "@hooks/header/useHeader"
-
-type LangSwitcherProps = {
-  toggleLanguage: () => void
-}
 
 const LangSwitcher: React.FC<LangSwitcherProps> = ({ toggleLanguage }) => {
   const { language, mobileState } = useHeaderValues()

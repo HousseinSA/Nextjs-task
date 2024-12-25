@@ -5,7 +5,7 @@ import ReduxWrapper from "@/app/lib/redux/ReduxWrapper"
 import "../globals.css"
 
 export const metadata: Metadata = {
-  title: "Techno-trans header ",
+  title: "Techno-trans Task ",
   description: "Task ",
 }
 

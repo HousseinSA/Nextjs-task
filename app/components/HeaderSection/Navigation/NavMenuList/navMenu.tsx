@@ -8,7 +8,6 @@ import { useHeaderValues } from "@hooks/header/useHeader"
 
 const NavMenu = () => {
   const { language, activeLink } = useHeaderValues()
-
   const dispatch = useDispatch()
   const currentLanguage = languages.find((lang) => lang.code === language)
   const navItems = currentLanguage?.content.navItems || {}

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import React from "react"
 
-type NavLinkProps = {
+interface NavLinkProps {
   menu: string
   route: string
   isActive: boolean
@@ -19,7 +19,7 @@ const NavLink: React.FC<NavLinkProps> = ({
   const inactiveClasses =
     "text-white border-transparent hover:border-gray-700 hover:text-gray-300"
 
-  const handelClick = () => {
+  const handleClick = () => {
     onClick()
   }
 
@@ -29,7 +29,7 @@ const NavLink: React.FC<NavLinkProps> = ({
         className={`${baseClasses} ${
           isActive ? activeClasses : inactiveClasses
         }`}
-        onClick={handelClick}
+        onClick={handleClick}
       >
         {menu}
       </li>

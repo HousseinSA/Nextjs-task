@@ -14,6 +14,10 @@ export interface Language {
   content: LanguageContent
 }
 
+export interface LangSwitcherProps {
+  toggleLanguage: () => void
+}
+
 export const languages: Language[] = [
   {
     code: "fr",

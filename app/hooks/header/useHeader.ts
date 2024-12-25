@@ -7,7 +7,6 @@ import { languages } from "@/app/lib/types/languages/languages"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@lib/types/HeaderTypes"
-
 import { usePathname } from "next/navigation"
 
 export const useHeader = () => {
@@ -24,7 +23,9 @@ export const useHeader = () => {
       (navLink) => navItems[navLink].route === pathname
     )
 
-    dispatch(setActiveLink(matchingNavLink || Object.keys(navItems)[0]))
+    if (matchingNavLink) {
+      dispatch(setActiveLink(matchingNavLink))
+    }
   }, [language, pathname, dispatch])
 
   const toggleLanguage = () => {
@@ -45,10 +46,8 @@ export const useHeader = () => {
 }
 
 export const useHeaderValues = () => {
-  const language = useSelector((state: RootState) => state.header.language)
-  const activeLink = useSelector((state: RootState) => state.header.activeLink)
-  const mobileState = useSelector(
-    (state: RootState) => state.header.mobileState
+  const { language, activeLink, mobileState } = useSelector(
+    (state: RootState) => state.header
   )
   return { language, activeLink, mobileState }
 }

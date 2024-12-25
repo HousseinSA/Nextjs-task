@@ -46,8 +46,11 @@ export const useVideoData = () => {
         console.error("Failed to fetch video data:", error)
       }
     }
-    getVideoData()
-  }, [dispatch])
+
+    if (videoData.length === 0) {
+      getVideoData()
+    }
+  }, [videoData.length, dispatch])
 
   const handlePopUpState = () => {
     dispatch(togglePopupState())
@@ -71,7 +74,6 @@ export const useVideoData = () => {
     handleToggleDetails,
   }
 }
-
 
 import { RefObject } from "react"
 export const useClickOutside = (
