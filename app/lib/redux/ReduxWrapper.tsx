@@ -5,7 +5,7 @@ import store, { persistor } from "@/app/lib/redux/store"
 import { PersistGate } from "redux-persist/integration/react"
 
 interface ReduxWrapperProps {
-  children?: ReactNode
+  children?: React.ReactNode
 }
 
 const ReduxWrapper: React.FC<ReduxWrapperProps> = ({ children }) => {

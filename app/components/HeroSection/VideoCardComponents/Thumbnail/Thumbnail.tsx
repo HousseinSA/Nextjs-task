@@ -1,12 +1,10 @@
 "use client"
 import Image from "next/image"
 import Link from "next/link"
-import React from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useState } from "react"
 import { Lock, Unlock } from "lucide-react"
 import { formatVideoLength } from "@/app/lib/functions/FormattingFunctions"
-import { RootState, ThumbnailProps } from "@/app/lib/types/HeroSectionTypes"
-import { setHoverState } from "@lib/redux/HeroSlice"
+import { ThumbnailProps } from "@/app/lib/types/HeroSectionTypes"
 
 const Thumbnail: React.FC<ThumbnailProps> = ({
   thumbnail,
@@ -15,9 +13,9 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   lengthSeconds,
   children,
 }) => {
+  const [isHovered, setIsHovered] = useState(false)
   const videoUrl = `https://www.youtube.com/watch?v=${videoId}`
-  const dispatch = useDispatch()
-  const { hoverState } = useSelector((state: RootState) => state.hero)
+
   return (
     <div className="relative">
       <div className="relative">
@@ -32,11 +30,11 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
         </Link>
         <div
           className="absolute top-2 right-2 flex items-center"
-          onMouseEnter={() => dispatch(setHoverState(true))}
-          onMouseLeave={() => dispatch(setHoverState(false))}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           <div
-            className="flex items-center z-40 "
+            className="flex items-center z-40"
             style={{ zIndex: "50px !important" }}
           >
             {isPrivate ? (
@@ -47,14 +45,14 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
             ) : (
               <Unlock
                 size={20}
-                className="text-green-300 opacity-60 hover:opacity-80 transition cursor-pointer "
+                className="text-green-300 opacity-60 hover:opacity-80 transition cursor-pointer"
               />
             )}
             <span
-              className={` bg-white px-2 py-.5 mr-1 rounded-md text-sm ${
+              className={`bg-white px-2 py-.5 mr-1 rounded-md text-sm ${
                 isPrivate ? "text-red-500" : "text-green-500"
               } transition-opacity duration-300 ${
-                hoverState ? "opacity-80" : "opacity-0"
+                isHovered ? "opacity-80" : "opacity-0"
               }`}
               style={{
                 position: "absolute",
